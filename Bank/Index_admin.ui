@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Index_admin</class>
+ <widget class="QWidget" name="Index_admin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>746</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>天堂证券中心</string>
+  </property>
+  <widget class="QFrame" name="frame_window">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>736</width>
+     <height>481</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame[objectName=&quot;frame_window&quot;]
+{
+	border-radius:15px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>695</x>
+      <y>2</y>
+      <width>41</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	color:white;
+	border-top-right-radius:14px;
+	font: 20pt &quot;Calibri&quot;;/*字体*/
+	background-color: rgba(255, 255, 255,0);/*背景色*/
+	border:0px;
+}
+QPushButton:hover
+{
+	background-color: rgba(255, 255, 255,0.5);
+	color: rgb(255, 0, 0);
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>×</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_minimize">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>2</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	color:white;
+	font: 20pt &quot;Calibri&quot;;/*字体*/
+	background-color: rgba(255, 255, 255,0);/*背景色*/
+	border:0px;
+}
+QPushButton:hover
+{
+	background-color: rgba(255, 255, 255,0.5);
+	color: rgb(0, 0, 0)
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_title">
+    <property name="geometry">
+     <rect>
+      <x>2</x>
+      <y>2</y>
+      <width>732</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;
+color:rgb(20,20,20);
+padding-bottom:1px;
+border-top-left-radius:14px;
+border-top-right-radius:14px;
+background-color: rgb(110, 205, 255)</string>
+    </property>
+    <property name="text">
+     <string>天堂证券中心</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QListView" name="lv_members">
+    <property name="geometry">
+     <rect>
+      <x>13</x>
+      <y>75</y>
+      <width>161</width>
+      <height>396</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListView
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(250, 250, 250);
+	outline:0px;
+}
+
+QListView::item
+{
+	height:25px;
+	border-radius:10px;
+}
+
+QListView::item:hover
+{
+	background-color: rgb(157, 213, 255);
+	height:25px;
+	border-radius:10px;
+}
+
+QListView::item:selected
+{
+	background-color: rgb(85, 170, 255);
+	border-radius:10px;
+	color:black;
+}</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_search">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>40</y>
+      <width>125</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:0px solid gray;
+border-radius:7px;
+padding-left:3px;
+padding-bottom:2px;
+font:13px;
+background-color: rgb(250, 250, 250);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_4">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>205</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限1</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_5">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>415</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限4</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_6">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>205</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限5</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_7">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>345</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限3</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_8">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>275</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_9">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>275</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限6</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_10">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>345</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限7</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_11">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>415</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+      spacing: 5px;
+		
+	background-color: rgb(85, 255, 127);
+  }
+
+  QCheckBox::indicator {
+      width: 20px;
+      height: 20px;
+  }
+
+  QCheckBox::indicator:unchecked {
+    
+  }
+
+  QCheckBox::indicator:unchecked:hover {
+     
+  }
+</string>
+    </property>
+    <property name="text">
+     <string>权限8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_add_admin">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>90</y>
+      <width>81</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+}
+QPushButton::hover
+{
+	border:2px solid rgb(0, 170, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>增加管理员</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_edit_admin">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>90</y>
+      <width>81</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+}
+QPushButton::hover
+{
+	border:2px solid rgb(0, 170, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>修改管理员</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_remove_admin">
+    <property name="geometry">
+     <rect>
+      <x>575</x>
+      <y>90</y>
+      <width>81</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+	color:red;
+}
+QPushButton::hover
+{
+	border:2px solid red;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>删除管理员</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_username">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>150</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>155</y>
+      <width>71</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>用户名：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>155</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>昵称：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_account">
+    <property name="geometry">
+     <rect>
+      <x>285</x>
+      <y>150</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+   </widget>
+   <zorder>lbl_title</zorder>
+   <zorder>btn_close</zorder>
+   <zorder>btn_minimize</zorder>
+   <zorder>lv_members</zorder>
+   <zorder>le_search</zorder>
+   <zorder>checkBox_4</zorder>
+   <zorder>checkBox_5</zorder>
+   <zorder>checkBox_6</zorder>
+   <zorder>checkBox_7</zorder>
+   <zorder>checkBox_8</zorder>
+   <zorder>checkBox_9</zorder>
+   <zorder>checkBox_10</zorder>
+   <zorder>checkBox_11</zorder>
+   <zorder>btn_add_admin</zorder>
+   <zorder>btn_edit_admin</zorder>
+   <zorder>btn_remove_admin</zorder>
+   <zorder>le_username</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>le_account</zorder>
+  </widget>
+  <widget class="QFrame" name="frame_blur">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>736</width>
+     <height>481</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(255, 255, 255,0.9);
+border:2px solid gray;
+border-radius:15px;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_search">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>48</y>
+     <width>23</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image:url(Resources/find_25x25.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_state">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>45</y>
+     <width>571</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(85, 255, 255,0);
+border:0px;
+font: 13px;</string>
+   </property>
+   <property name="text">
+    <string>欢迎！无敌的开发者！</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_state_div">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>75</y>
+     <width>536</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(85, 255, 255,0);
+border:1px solid gray;
+font: 13px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <zorder>frame_blur</zorder>
+  <zorder>frame_window</zorder>
+  <zorder>lbl_search</zorder>
+  <zorder>lbl_state</zorder>
+  <zorder>lbl_state_div</zorder>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_minimize</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin</receiver>
+   <slot>btn_minimize_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>735</x>
+     <y>17</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>712</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_close</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin</receiver>
+   <slot>btn_close_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>770</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>653</x>
+     <y>-6</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>btn_minimize_click()</slot>
+  <slot>btn_close_click()</slot>
+  <slot>btn_get_money_click()</slot>
+  <slot>btn_save_money_click()</slot>
+ </slots>
+</ui>
