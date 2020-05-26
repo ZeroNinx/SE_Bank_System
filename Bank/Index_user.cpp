@@ -123,6 +123,7 @@ void Index_user::mousePressEvent(QMouseEvent* event)
 	}
 }
 
+
 void Index_user::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_bDrag)

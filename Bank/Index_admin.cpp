@@ -56,6 +56,25 @@ Index_admin::Index_admin(QWidget* p, string u) :parent(p), username(u)
 		ui.lbl_title->setFont(font);
 	}
 
+	QFile fontfile2(qs("Resources/圆体/medium.TTF"));
+	if (fontfile2.open(QFile::ReadOnly))
+	{
+		//载入，设置字体
+		int id = QFontDatabase::addApplicationFontFromData(fontfile2.readAll());
+		QFont font(QFontDatabase::applicationFontFamilies(id).at(0), 15, 10);
+		ui.lbl_state->setFont(font);
+		ui.lbl_account->setFont(font);
+		ui.lbl_username->setFont(font);
+		ui.cb_1->setFont(font);
+		ui.cb_2->setFont(font);
+		ui.cb_3->setFont(font);
+		ui.cb_4->setFont(font);
+		ui.cb_5->setFont(font);
+		ui.cb_6->setFont(font);
+		ui.cb_7->setFont(font);
+		ui.cb_8->setFont(font);
+	}
+
 	try
 	{
 		Bank* p = (Bank*)parent;
