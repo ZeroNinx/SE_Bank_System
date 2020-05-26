@@ -1,14 +1,14 @@
 #pragma once
 
 #include "stdafx.h"
-#include "ui_Trade.h"
+#include "ui_Create_admin_form.h"
 
-class Trade : public QWidget
+class Create_admin_form : public QWidget
 {
 	Q_OBJECT
 
 public:
-	Trade();
+	Create_admin_form(QWidget *p = Q_NULLPTR);
 
 protected:
 	//拖拽窗口
@@ -17,7 +17,8 @@ protected:
 	void mouseReleaseEvent(QMouseEvent* event);
 
 private:
-	
+	QWidget* parent;
+
 	//窗口拖拽变量
 	bool m_bDrag;
 	QPoint mouseStartPoint;
@@ -28,5 +29,5 @@ public slots:
 	void btn_submit_click();
 
 private:
-	Ui::Trade ui;
+	Ui::Create_admin_form ui;
 };

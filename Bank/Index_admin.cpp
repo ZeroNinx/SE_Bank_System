@@ -1,6 +1,6 @@
 #include "Index_admin.h"
-
 #include "Bank.h"
+#include "Create_admin_form.h"
 
 using namespace std;
 using namespace boost::property_tree;
@@ -75,6 +75,12 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 		ui.cb_8->setFont(font);
 	}
 
+	//获取cookie权限
+	cookie = ((Bank*)parent)->cookie;
+
+	//设定用户名只读
+	ui.le_account->setReadOnly(true);
+
 	//初始化权限列表
 	perms[0] = ui.cb_1;
 	perms[1] = ui.cb_2;
@@ -85,7 +91,7 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 	perms[6] = ui.cb_7;
 	perms[7] = ui.cb_8;
 
-
+	//获取参数
 	try
 	{
 		Bank* p = (Bank*)parent;
@@ -157,7 +163,7 @@ void Index_admin::lv_members_click(QModelIndex mi)
 {
 	//获取下标
 	int index = mi.row();
-	see(qs(to_string(index)));
+	//see(qs(to_string(index)));
 	
 	//获取用户名
 	ui.le_account->setText(qs8(admins[index].account));
@@ -171,7 +177,8 @@ void Index_admin::lv_members_click(QModelIndex mi)
 //增加管理员按钮
 void Index_admin::btn_add_admin_click()
 {
-	
+	Create_admin_form* form = new Create_admin_form(this);
+	form->show();
 }
 
 //拖拽操作

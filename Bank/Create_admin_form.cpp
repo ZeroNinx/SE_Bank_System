@@ -1,22 +1,22 @@
-#include "Trade.h"
+#include "Create_admin_form.h"
 #include "GradientsBtn.h"
+#include "Index_admin.h"
+
 using namespace std;
+using namespace boost::beast::http;
+using namespace boost::property_tree;
 
-Trade::Trade()
+//构造函数
+Create_admin_form::Create_admin_form(QWidget *p)
 {
-	ui.setupUi(this);
+	parent = p;
 
+	ui.setupUi(this);
 	//设定窗口图标
 	setWindowIcon(QIcon("Resources/icon.png"));
 
 	//设定窗口文字
-	ui.lbl_title->setText(qs("转账窗口"));
-
-	//添加登录按钮
-	GradientsBtn* btn_submit = new GradientsBtn(this,"转账");
-	btn_submit->setGeometry(20, 190, 361, 41);
-	btn_submit->raise();
-	connect(btn_submit, &GradientsBtn::clicked, this, &Trade::btn_submit_click);
+	ui.lbl_title->setText(qs("创建管理员"));
 
 	//设定背景透明
 	setAttribute(Qt::WA_TranslucentBackground, true);
@@ -30,6 +30,12 @@ Trade::Trade()
 	effect->setColor(Qt::black);
 	effect->setOffset(0, 0);
 	ui.frame_window->setGraphicsEffect(effect);
+
+	//添加登录按钮
+	GradientsBtn* btn_submit = new GradientsBtn(this, "创建");
+	btn_submit->setGeometry(25, 444, 506, 36);
+	btn_submit->raise();
+	connect(btn_submit, &GradientsBtn::clicked, this, &Create_admin_form::btn_submit_click);
 
 	//检索字体
 	QFile fontfile(qs("Resources/圆体/bold.TTF"));
@@ -48,8 +54,18 @@ Trade::Trade()
 		//载入，设置字体
 		int id = QFontDatabase::addApplicationFontFromData(fontfile2.readAll());
 		QFont font(QFontDatabase::applicationFontFamilies(id).at(0), 15, 10);
-		ui.lbl_hint->setFont(font);
-		ui.lbl_hint_2->setFont(font);
+		ui.lbl_account->setFont(font);
+		ui.lbl_username->setFont(font);
+		ui.lbl_password->setFont(font);
+		ui.lbl_re_password->setFont(font);
+		ui.cb_1->setFont(font);
+		ui.cb_2->setFont(font);
+		ui.cb_3->setFont(font);
+		ui.cb_4->setFont(font);
+		ui.cb_5->setFont(font);
+		ui.cb_6->setFont(font);
+		ui.cb_7->setFont(font);
+		ui.cb_8->setFont(font);
 	}
 
 	QFile fontfile3(qs("Resources/圆体/heavy.TTF"));
@@ -60,27 +76,23 @@ Trade::Trade()
 		QFont font(QFontDatabase::applicationFontFamilies(id).at(0), 15, 10);
 		btn_submit->setFont(font);
 	}
-
-	//限制输入浮点数
-	QDoubleValidator* validator = new QDoubleValidator(0, 100, 2, this);
-	ui.le_money->setValidator(validator);
 }
 
 //关闭按钮
-void Trade::btn_close_click()
+void Create_admin_form::btn_close_click()
 {
 	this->close();
 }
 
-//执行按钮
-void Trade::btn_submit_click()
+//创建按钮
+void Create_admin_form::btn_submit_click()
 {
-	
+	string cookie = ((Index_admin*)parent)->cookie;
+	see(qs(cookie));
 }
 
-
 //拖拽操作
-void Trade::mousePressEvent(QMouseEvent* event)
+void Create_admin_form::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 	{
@@ -93,7 +105,7 @@ void Trade::mousePressEvent(QMouseEvent* event)
 	}
 }
 
-void Trade::mouseMoveEvent(QMouseEvent* event)
+void Create_admin_form::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_bDrag)
 	{
@@ -105,7 +117,7 @@ void Trade::mouseMoveEvent(QMouseEvent* event)
 	}
 }
 
-void Trade::mouseReleaseEvent(QMouseEvent* event)
+void Create_admin_form::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 	{

@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Bank.cpp" />
+    <ClCompile Include="Create_admin_form.cpp" />
     <ClCompile Include="HttpConn.cpp" />
     <ClCompile Include="Index_admin.cpp" />
     <ClCompile Include="Index_admin_user.cpp" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Bank.ui" />
+    <QtUic Include="Create_admin_form.ui" />
     <QtUic Include="Index.ui" />
     <QtUic Include="Index_admin_user.ui" />
     <QtUic Include="Index_user.ui" />
@@ -112,6 +114,7 @@
     <QtRcc Include="Bank.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="Create_admin_form.h" />
     <ClInclude Include="User.h" />
     <QtMoc Include="Index.h" />
     <QtMoc Include="ScrollBtn.h" />

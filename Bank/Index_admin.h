@@ -10,6 +10,7 @@ class Index_admin : public QWidget
 	Q_OBJECT
 public:
 	Index_admin(QWidget* p, std::string a);
+	std::string cookie;
 
 protected:
 	//ÍÏ×§´°¿Ú
