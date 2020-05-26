@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>491</height>
+    <width>747</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -674,6 +674,9 @@ QLineEdit:hover
 	border-bottom-color: rgba(85, 170, 255,0.6);
 }</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="lbl_account">
     <property name="geometry">
@@ -732,6 +735,9 @@ QLineEdit:hover
 {
 	border-bottom-color: rgba(85, 170, 255,0.6);
 }</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <zorder>lbl_title</zorder>
@@ -855,7 +861,7 @@ font: 13px;</string>
     </hint>
     <hint type="destinationlabel">
      <x>712</x>
-     <y>-15</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -871,7 +877,23 @@ font: 13px;</string>
     </hint>
     <hint type="destinationlabel">
      <x>653</x>
-     <y>-6</y>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lv_members</sender>
+   <signal>entered(QModelIndex)</signal>
+   <receiver>Index_admin</receiver>
+   <slot>lv_members_click(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -879,7 +901,6 @@ font: 13px;</string>
  <slots>
   <slot>btn_minimize_click()</slot>
   <slot>btn_close_click()</slot>
-  <slot>btn_get_money_click()</slot>
-  <slot>btn_save_money_click()</slot>
+  <slot>lv_members_click(QModelIndex)</slot>
  </slots>
 </ui>

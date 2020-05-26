@@ -12,7 +12,11 @@ Admin::Admin(boost::property_tree::ptree JSON)
 		account = JSON.get<string>("account");
 		ptree pm = JSON.get_child("perms");
 		BOOST_FOREACH(ptree::value_type & i, pm)
-			perms[i.second.data()] = true;
+		{
+			ffor(index, 0, 7)
+				if(i.second.data()==all_perms[index])
+					perms[index] = true;
+		}
 	}
 	catch (const std::exception&e)
 	{

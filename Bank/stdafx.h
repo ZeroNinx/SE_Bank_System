@@ -4,6 +4,7 @@
 #include <sdkddkver.h>
 
 //stdc++
+#include <algorithm>
 #include <queue>
 #include <sstream>
 #include <vector>
@@ -17,6 +18,7 @@
 
 //Qt
 #include <QBrush>
+#include <QCheckBox>
 #include <QCloseEvent>
 #include <QEvent>
 #include <QFile>
@@ -31,6 +33,7 @@
 #include <QLineEdit>
 #include <QStringListModel>
 #include <QMessageBox>
+#include <QListView>
 #include <QMouseEvent>
 #include <QMovie>
 #include <QObject>

@@ -6,7 +6,7 @@ using namespace std;
 using namespace boost::property_tree;
 using namespace boost::beast::http;
 
-Index_admin::Index_admin(QWidget* p, string u) :parent(p), username(u)
+Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 {
 	ui.setupUi(this);
 
@@ -75,6 +75,17 @@ Index_admin::Index_admin(QWidget* p, string u) :parent(p), username(u)
 		ui.cb_8->setFont(font);
 	}
 
+	//初始化权限列表
+	perms[0] = ui.cb_1;
+	perms[1] = ui.cb_2;
+	perms[2] = ui.cb_3;
+	perms[3] = ui.cb_4;
+	perms[4] = ui.cb_5;
+	perms[5] = ui.cb_6;
+	perms[6] = ui.cb_7;
+	perms[7] = ui.cb_8;
+
+
 	try
 	{
 		Bank* p = (Bank*)parent;
@@ -89,6 +100,8 @@ Index_admin::Index_admin(QWidget* p, string u) :parent(p), username(u)
 		stringstream ss;
 		ss << init->response.body();
 		read_json(ss, root);
+
+		see(qs(ss.str()));
 
 		int code = root.get<int>("code");
 		if (code != 4001)
@@ -106,10 +119,9 @@ Index_admin::Index_admin(QWidget* p, string u) :parent(p), username(u)
 		BOOST_FOREACH(ptree::value_type& i, data)
 		{
 			//初始化管理员列表
-			ptree member = i.second;
-			admins.push_back(Admin(member));
-			sl << qs8(username);
-			string username = member.get<string>("username");
+			Admin admin = Admin(i.second);
+			admins.push_back(admin);
+			sl << qs8(admin.username);
 		}
 
 		//应用用户列表
@@ -140,6 +152,27 @@ void Index_admin::btn_close_click()
 	parent->raise();
 }
 
+//成员列表选定
+void Index_admin::lv_members_click(QModelIndex mi)
+{
+	//获取下标
+	int index = mi.row();
+	see(qs(to_string(index)));
+	
+	//获取用户名
+	ui.le_account->setText(qs8(admins[index].account));
+	ui.le_username->setText(qs8(admins[index].username));
+
+	//获取权限
+	ffor(i, 0, 7)
+		perms[i]->setChecked(admins[index].perms[i]);
+}
+
+//增加管理员按钮
+void Index_admin::btn_add_admin_click()
+{
+	
+}
 
 //拖拽操作
 void Index_admin::mousePressEvent(QMouseEvent* event)
