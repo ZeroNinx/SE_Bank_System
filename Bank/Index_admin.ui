@@ -133,6 +133,7 @@ background-color: rgb(110, 205, 255)</string>
 	border-radius:10px;
 	background-color: rgb(250, 250, 250);
 	outline:0px;
+	font:14px;
 }
 
 QListView::item
@@ -584,6 +585,7 @@ QCheckBox::indicator:checked:hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -610,6 +612,7 @@ QPushButton::hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -637,6 +640,7 @@ QPushButton::hover
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
 	color:red;
+	font:13px;
 }
 QPushButton::hover
 {
@@ -913,11 +917,45 @@ font: 13px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btn_remove_admin</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin</receiver>
+   <slot>btn_remove_admin_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>623</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>577</x>
+     <y>-9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_edit_admin</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin</receiver>
+   <slot>btn_edit_admin_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>-18</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>btn_minimize_click()</slot>
   <slot>btn_close_click()</slot>
   <slot>lv_members_click(QModelIndex)</slot>
   <slot>btn_add_admin_click()</slot>
+  <slot>btn_remove_admin_click()</slot>
+  <slot>btn_edit_admin_click()</slot>
  </slots>
 </ui>

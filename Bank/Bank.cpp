@@ -110,26 +110,6 @@ void Bank::btn_select_move_over()
 //登录按钮
 void Bank::btn_login_click()
 {
-	////测试
-	//if (is_admin)
-	//{
-	//	Index* index = new Index(this, "测试");
-	//	index->show();
-	//	this->hide();
-	//}
-	//else
-	//{
-	//	Index_user* index = new Index_user(this, "测试");
-	//	index->show();
-	//	this->hide();
-	//}
-	//return;
-	//测试
-	//
-	//
-	//
-	//
-	
 	if (dev)
 		target = "/login/dev";
 	else
@@ -178,7 +158,7 @@ void Bank::btn_login_click()
 		//	see(qs(i->value().to_string()));
 
 		//输出返回的数据
-		see(resp.body().c_str());
+		//see(resp.body().c_str());
 
 		//分析返回值
 		stringstream resp_ss;

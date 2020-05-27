@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "ui_Index.h"
+#include "User.h"
 
 class Index : public QWidget
 {
@@ -15,6 +16,7 @@ protected:
 	void mouseMoveEvent(QMouseEvent* event);
 	void mouseReleaseEvent(QMouseEvent* event);
 
+	void init_user_list();
 private:
 	//属性
 	QWidget* parent;//父窗口
@@ -25,9 +27,14 @@ private:
 	QPoint mouseStartPoint;
 	QPoint windowTopLeftPoint;
 
+	std::vector<User> users;
+
 public slots:
 	void btn_minimize_click();//最小化按钮
 	void btn_close_click();//关闭按钮
+
+	void lv_members_click(QModelIndex);//单击列表
+
 
 private:
 	Ui::Index ui;

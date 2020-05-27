@@ -14,7 +14,8 @@ private:
 
 	//所有权限
 	const std::string all_perms[8] =
-	{ "cl_ge",
+	{ 
+		"cl_ge",
 		"cl_up",
 		"cl_ad",
 		"cl_del",

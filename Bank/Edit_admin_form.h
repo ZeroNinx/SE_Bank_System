@@ -1,14 +1,14 @@
 #pragma once
 
 #include "stdafx.h"
-#include "ui_Create_admin_form.h"
+#include "ui_Edit_admin_form.h"
 
-class Create_admin_form : public QWidget
+class Edit_admin_form : public QWidget
 {
 	Q_OBJECT
 
 public:
-	Create_admin_form(QWidget *p = Q_NULLPTR);
+	Edit_admin_form(QWidget *p = Q_NULLPTR);
 
 protected:
 	//拖拽窗口
@@ -24,10 +24,26 @@ private:
 	QPoint mouseStartPoint;
 	QPoint windowTopLeftPoint;
 
+	QCheckBox* perms[8];
+	std::string perm_list[8] =
+	{
+		"cl_ge",
+		"cl_up",
+		"cl_ad",
+		"cl_del",
+		"ac_ad",
+		"ac_ge",
+		"ac_fre",
+		"ac_del"
+	};
+
 public slots:
 	void btn_close_click();
 	void btn_submit_click();
 
+signals:
+	void create_complete();//创建完成信号
+
 private:
-	Ui::Create_admin_form ui;
+	Ui::Edit_admin_form ui;
 };

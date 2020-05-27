@@ -212,6 +212,7 @@ border-radius:10px;</string>
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -238,6 +239,7 @@ QPushButton::hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -264,6 +266,7 @@ QPushButton::hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -291,6 +294,7 @@ QPushButton::hover
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
 	color:red;
+	font:13px;
 }
 QPushButton::hover
 {
@@ -317,6 +321,7 @@ QPushButton::hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -436,18 +441,18 @@ font:15px;</string>
    <widget class="QLabel" name="lbl_money_value">
     <property name="geometry">
      <rect>
-      <x>545</x>
-      <y>75</y>
-      <width>181</width>
-      <height>66</height>
+      <x>560</x>
+      <y>87</y>
+      <width>156</width>
+      <height>46</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:36px;
+     <string notr="true">font:30px;
 color:rgb(255, 0, 0)</string>
     </property>
     <property name="text">
-     <string>1</string>
+     <string>-</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -456,7 +461,7 @@ color:rgb(255, 0, 0)</string>
    <widget class="QLabel" name="lbl_money">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>480</x>
       <y>100</y>
       <width>51</width>
       <height>26</height>
@@ -472,7 +477,7 @@ color:rgb(255, 0, 0)</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>515</x>
+      <x>525</x>
       <y>88</y>
       <width>31</width>
       <height>46</height>
@@ -694,11 +699,26 @@ font: 13px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lv_members</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>Index</receiver>
+   <slot>lv_members_click(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>-16</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>btn_minimize_click()</slot>
   <slot>btn_close_click()</slot>
-  <slot>btn_get_money_click()</slot>
-  <slot>btn_save_money_click()</slot>
+  <slot>lv_members_click(QModelIndex)</slot>
  </slots>
 </ui>

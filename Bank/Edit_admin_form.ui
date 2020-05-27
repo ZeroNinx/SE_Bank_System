@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Create_admin_form</class>
- <widget class="QWidget" name="Create_admin_form">
+ <class>Edit_admin_form</class>
+ <widget class="QWidget" name="Edit_admin_form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create_admin_form</string>
+   <string>创建管理员</string>
   </property>
   <widget class="QFrame" name="frame_window">
    <property name="geometry">
@@ -682,7 +682,7 @@ QLineEdit:hover
   <connection>
    <sender>btn_close</sender>
    <signal>clicked()</signal>
-   <receiver>Create_admin_form</receiver>
+   <receiver>Edit_admin_form</receiver>
    <slot>btn_close_click()</slot>
    <hints>
     <hint type="sourcelabel">

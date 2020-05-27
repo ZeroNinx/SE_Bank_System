@@ -1,6 +1,6 @@
 #include "Index_admin.h"
 #include "Bank.h"
-#include "Create_admin_form.h"
+#include "Edit_admin_form.h"
 
 using namespace std;
 using namespace boost::property_tree;
@@ -73,13 +73,21 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 		ui.cb_6->setFont(font);
 		ui.cb_7->setFont(font);
 		ui.cb_8->setFont(font);
+		ui.btn_add_admin->setFont(font);
+		ui.btn_edit_admin->setFont(font);
+		ui.btn_remove_admin->setFont(font);
+		ui.lv_members->setFont(font);
 	}
 
-	//获取cookie权限
-	cookie = ((Bank*)parent)->cookie;
+	//获取上级参数
+	Bank* pr = (Bank*)p;
+	cookie = pr->cookie;
+	host = pr->host;
+	port = pr->port;
 
 	//设定用户名只读
 	ui.le_account->setReadOnly(true);
+	ui.le_username->setReadOnly(true);
 
 	//初始化权限列表
 	perms[0] = ui.cb_1;
@@ -91,55 +99,9 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 	perms[6] = ui.cb_7;
 	perms[7] = ui.cb_8;
 
-	//获取参数
-	try
-	{
-		Bank* p = (Bank*)parent;
-		HttpConn* init = new HttpConn(p->host, p->port);
-		init->build(verb::get, "/users", 11);
-		init->request.set(field::cookie, p->cookie);
-		init->connect();
-		//see(qs(init->response.body()));
 
-		//解析JSON
-		ptree root;
-		stringstream ss;
-		ss << init->response.body();
-		read_json(ss, root);
-
-		see(qs(ss.str()));
-
-		int code = root.get<int>("code");
-		if (code != 4001)
-		{
-			string msg = root.get<string>("msg");
-			see(qs8(msg));
-			return;
-		}
-
-		//初始化用户列表
-		QStringList sl;
-
-		//遍历管理员
-		ptree data = root.get_child("data");
-		BOOST_FOREACH(ptree::value_type& i, data)
-		{
-			//初始化管理员列表
-			Admin admin = Admin(i.second);
-			admins.push_back(admin);
-			sl << qs8(admin.username);
-		}
-
-		//应用用户列表
-		QStringListModel* slm = new QStringListModel(sl);
-		ui.lv_members->setModel(slm);
-		ui.lv_members->setEditTriggers(QAbstractItemView::NoEditTriggers);
-		
-	}
-	catch (const std::exception& e)
-	{
-		see(e.what());
-	}
+	//初始化管理员列表
+	init_adlin_list();
 }
 
 //最小化按钮
@@ -156,6 +118,62 @@ void Index_admin::btn_close_click()
 	//显示父窗口并暂时置顶
 	parent->show();
 	parent->raise();
+}
+
+//初始化管理员列表
+void Index_admin::init_adlin_list()
+{
+	admins.clear();
+	//获取参数
+	try
+	{
+		Bank* p = (Bank*)parent;
+		HttpConn* init = new HttpConn(p->host, p->port);
+		init->build(verb::get, "/users", 11);
+		init->request.set(field::cookie, p->cookie);
+		init->connect();
+		//see(qs(init->response.body()));
+
+		//解析JSON
+		ptree root;
+		stringstream ss;
+		ss << init->response.body();
+		read_json(ss, root);
+
+		//see(qs(ss.str()));
+
+		int code = root.get<int>("code");
+		if (code != 4001)
+		{
+			string msg = root.get<string>("msg");
+			see(qs8(msg));
+			return;
+		}
+
+		//初始化用户列表
+		QStringList sl;
+
+		//遍历管理员
+		ptree data = root.get_child("data");
+		BOOST_FOREACH(ptree::value_type & i, data)
+		{
+			//初始化管理员列表
+			Admin admin = Admin(i.second);
+			admins.push_back(admin);
+			sl << qs8(admin.username);
+		}
+
+		//应用用户列表
+		QStringListModel* slm = new QStringListModel(sl);
+		ui.lv_members->setModel(slm);
+		ui.lv_members->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+		lv_members_click(ui.lv_members->model()->index(0,0));
+	}
+	catch (const std::exception& e)
+	{
+		see(e.what());
+	}
 }
 
 //成员列表选定
@@ -177,8 +195,117 @@ void Index_admin::lv_members_click(QModelIndex mi)
 //增加管理员按钮
 void Index_admin::btn_add_admin_click()
 {
-	Create_admin_form* form = new Create_admin_form(this);
+	Edit_admin_form* form = new Edit_admin_form(this);
+	connect(form, &Edit_admin_form::create_complete, this, &Index_admin::create_admin_success);
 	form->show();
+}
+
+//编辑管理员按钮
+void Index_admin::btn_edit_admin_click()
+{
+	try
+	{
+		//建立连接
+		Bank* p = (Bank*)parent;
+		HttpConn* create = new HttpConn(p->host, p->port);
+
+		//构造JSON
+		ptree root;
+		stringstream ss;
+
+		root.put("account", ui.le_account->text().toStdString());
+
+		ptree pms;
+		ffor(i, 0, 7)
+		{
+			if (perms[i]->isChecked())
+			{
+				ptree perm;
+				perm.put("", perm_list[i]);
+				pms.push_back(make_pair("", perm));
+			}
+		}
+		root.put_child("perms", pms);
+		write_json(ss, root);
+
+		//see(qs(ss.str()));
+
+		//设定参数
+		create->build(verb::put, "/user", 11);
+		create->request.set(field::cookie, p->cookie);
+		create->request.set(field::content_type, "application/json");
+		create->request.set(field::content_length, ss.str().length());
+		create->request.body() = ss.str();
+
+		//连接
+		create->connect();
+
+		//解析JSON
+		stringstream resp_ss;
+		resp_ss << create->response.body();
+		//see(qs8(resp_ss.str()));
+
+		ptree resp;
+		read_json(resp_ss, resp);
+		int code = resp.get<int>("code");
+		if (code == 4101)
+		{
+			see(qs("修改成功！"));
+			init_adlin_list();
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
+}
+
+//删除管理员按钮
+void Index_admin::btn_remove_admin_click()
+{
+	try
+	{
+		Bank* p = (Bank*)parent;
+
+		HttpConn* del = new HttpConn(p->host, p->port);
+		del->build(verb::delete_, "/user/" + ui.le_account->text().toStdString(), 11);
+		del->request.set(field::cookie, cookie);
+		del->connect();
+
+		ptree resp;
+		stringstream resp_ss;
+		resp_ss << del->response.body();
+		read_json(resp_ss, resp);
+		see(qs8(resp_ss.str()));
+
+		int code = resp.get<int>("code");
+		if (code == 4301)
+		{
+			see(qs("删除成功！"));
+			init_adlin_list();
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
+}
+
+//管理员创建成功
+void Index_admin::create_admin_success()
+{
+	init_adlin_list();
 }
 
 //拖拽操作

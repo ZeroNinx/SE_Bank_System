@@ -1,4 +1,4 @@
-#include "Create_admin_form.h"
+#include "Edit_admin_form.h"
 #include "GradientsBtn.h"
 #include "Index_admin.h"
 
@@ -7,7 +7,7 @@ using namespace boost::beast::http;
 using namespace boost::property_tree;
 
 //构造函数
-Create_admin_form::Create_admin_form(QWidget *p)
+Edit_admin_form::Edit_admin_form(QWidget *p)
 {
 	parent = p;
 
@@ -35,7 +35,7 @@ Create_admin_form::Create_admin_form(QWidget *p)
 	GradientsBtn* btn_submit = new GradientsBtn(this, "创建");
 	btn_submit->setGeometry(25, 444, 506, 36);
 	btn_submit->raise();
-	connect(btn_submit, &GradientsBtn::clicked, this, &Create_admin_form::btn_submit_click);
+	connect(btn_submit, &GradientsBtn::clicked, this, &Edit_admin_form::btn_submit_click);
 
 	//检索字体
 	QFile fontfile(qs("Resources/圆体/bold.TTF"));
@@ -76,23 +76,105 @@ Create_admin_form::Create_admin_form(QWidget *p)
 		QFont font(QFontDatabase::applicationFontFamilies(id).at(0), 15, 10);
 		btn_submit->setFont(font);
 	}
+
+	//初始化权限列表
+	perms[0] = ui.cb_1;
+	perms[1] = ui.cb_2;
+	perms[2] = ui.cb_3;
+	perms[3] = ui.cb_4;
+	perms[4] = ui.cb_5;
+	perms[5] = ui.cb_6;
+	perms[6] = ui.cb_7;
+	perms[7] = ui.cb_8;
 }
 
 //关闭按钮
-void Create_admin_form::btn_close_click()
+void Edit_admin_form::btn_close_click()
 {
 	this->close();
 }
 
 //创建按钮
-void Create_admin_form::btn_submit_click()
+void Edit_admin_form::btn_submit_click()
 {
-	string cookie = ((Index_admin*)parent)->cookie;
-	see(qs(cookie));
+	//输入处理
+	if (ui.le_account->text().isEmpty() || ui.le_username->text().isEmpty() || ui.le_password->text().isEmpty() || ui.le_re_password->text().isEmpty())
+	{
+		see(qs("请输入完整！"));
+		return;
+	}
+	if (ui.le_password->text() != ui.le_re_password->text())
+	{
+		see(qs("两次输入的密码不一样！"));
+		return;
+	}
+
+	try
+	{
+		//建立连接
+		Index_admin* p = (Index_admin*)parent;
+		HttpConn* create = new HttpConn(p->host, p->port);
+
+		//构造JSON
+		ptree root;
+		stringstream ss;
+
+		root.put("account", ui.le_account->text().toStdString());
+		root.put("username", ui.le_username->text().toStdString());
+		root.put("password", ui.le_password->text().toStdString());
+
+		ptree pms;
+		ffor(i, 0, 7)
+		{
+			if (perms[i]->isChecked())
+			{
+				ptree perm;
+				perm.put("", perm_list[i]);
+
+				pms.push_back(make_pair("", perm));
+			}
+		}
+		root.put_child("perms", pms);
+		write_json(ss, root);
+
+		//设定参数
+		create->build(verb::post, "/user", 11);
+		create->request.set(field::cookie, p->cookie);
+		create->request.set(field::content_type, "application/json");
+		create->request.set(field::content_length, ss.str().length());
+		create->request.body() = ss.str();
+
+		//连接
+		create->connect();
+
+		//解析JSON
+		stringstream resp_ss;
+		resp_ss << create->response.body();
+		//see(qs8(resp_ss.str()));
+
+		ptree resp;
+		read_json(resp_ss, resp);
+		int code = resp.get<int>("code");
+		if (code == 4201)
+		{
+			see(qs("创建成功！"));
+			emit create_complete();
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
+	
 }
 
 //拖拽操作
-void Create_admin_form::mousePressEvent(QMouseEvent* event)
+void Edit_admin_form::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 	{
@@ -105,7 +187,7 @@ void Create_admin_form::mousePressEvent(QMouseEvent* event)
 	}
 }
 
-void Create_admin_form::mouseMoveEvent(QMouseEvent* event)
+void Edit_admin_form::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_bDrag)
 	{
@@ -117,7 +199,7 @@ void Create_admin_form::mouseMoveEvent(QMouseEvent* event)
 	}
 }
 
-void Create_admin_form::mouseReleaseEvent(QMouseEvent* event)
+void Edit_admin_form::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton)
 	{

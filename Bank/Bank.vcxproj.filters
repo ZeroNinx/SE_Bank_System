@@ -64,7 +64,7 @@
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Create_admin_form.cpp">
+    <ClCompile Include="Edit_admin_form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,7 +87,7 @@
     <QtUic Include="Trade.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Create_admin_form.ui">
+    <QtUic Include="Edit_admin_form.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -138,7 +138,7 @@
     <QtMoc Include="Trade.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Create_admin_form.h">
+    <QtMoc Include="Edit_admin_form.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -13,6 +13,7 @@
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
 #include <boost/foreach.hpp>
+#include <boost/locale.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -59,4 +60,4 @@
 QString qs(std::string text);
 QString qs(char* text);
 QString qs8(std::string text);
-
+std::string to_utf8(std::string);
