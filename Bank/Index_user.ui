@@ -630,10 +630,44 @@ font: 13px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lv_members</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>Index_user</receiver>
+   <slot>lv_members_click(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>119</x>
+     <y>-6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_edit</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_user</receiver>
+   <slot>btn_trade_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>335</x>
+     <y>237</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>314</x>
+     <y>-17</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>btn_minimize_click()</slot>
   <slot>btn_close_click()</slot>
   <slot>btn_trade_click()</slot>
+  <slot>lv_members_click(QModelIndex)</slot>
+  <slot>btn_edit_click()</slot>
  </slots>
 </ui>

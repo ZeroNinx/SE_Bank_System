@@ -83,6 +83,12 @@ Index::Index(QWidget* p, string u) :parent(p), username(u)
 	//初始化状态栏
 	ui.lbl_welcome->setText(qs("欢迎！") + qs8(username) + qs("    用户类型：管理员"));
 
+	//取得参数
+	Bank* pr = (Bank*)parent;
+	host = pr->host;
+	port = pr->port;
+	cookie = pr->cookie;
+
 	//初始化用户列表
 	init_user_list();
 }

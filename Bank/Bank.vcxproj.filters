@@ -67,6 +67,12 @@
     <ClCompile Include="Edit_admin_form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Edit_user_form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Bank.ui">
@@ -90,6 +96,9 @@
     <QtUic Include="Edit_admin_form.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Edit_user_form.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Bank.qrc">
@@ -110,6 +119,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -139,6 +151,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Edit_admin_form.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Edit_user_form.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

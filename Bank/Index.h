@@ -9,6 +9,9 @@ class Index : public QWidget
 	Q_OBJECT
 public:
 	Index(QWidget* p, std::string u);
+	std::string host;
+	std::string port;
+	std::string cookie;
 
 protected:
 	//ÍÏ×§´°¿Ú

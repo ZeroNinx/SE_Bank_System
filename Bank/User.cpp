@@ -6,6 +6,7 @@ User::User(ptree p)
 {
 	try
 	{
+		username = p.get<string>("account");
 		name = p.get<string>("name");
 		is_male = p.get<bool>("sex");
 		birthday = p.get<string>("birth");

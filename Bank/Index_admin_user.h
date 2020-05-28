@@ -8,6 +8,9 @@ class Index_admin_user : public QWidget
 	Q_OBJECT
 public:
 	Index_admin_user(QWidget* p, std::string u);
+	std::string host;
+	std::string port;
+	std::string cookie;
 
 protected:
 	//ÍÏ×§´°¿Ú

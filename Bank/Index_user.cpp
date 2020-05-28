@@ -1,4 +1,6 @@
 #include "Index_user.h"
+#include "Bank.h"
+#include "Edit_user_form.h"
 
 using namespace std;
 using namespace boost::property_tree;
@@ -77,13 +79,98 @@ Index_user::Index_user(QWidget* p, User* u) :parent(p), user(u)
 	if (user->is_male)
 		ui.rb_male->setChecked(true);
 	else ui.rb_female->setChecked(true);
+	ui.de_birthday->setDate(QDate::fromString(qs8(user->birthday), qs8("yyyy-MM-dd")));
+
+	//取得参数
+	Bank* pr = (Bank*)parent;
+	host = pr->host;
+	port = pr->port;
+	cookie = pr->cookie;
 
 	//初始化用户列表
-	QStringList sl;
-	sl << qs("小明") << qs("小黄");
-	QStringListModel* slm = new QStringListModel(sl);
-	ui.lv_members->setModel(slm);
-	ui.lv_members->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	init_account_list();
+
+}
+
+//初始化账户列表
+void Index_user::init_account_list()
+{
+	accounts.clear();
+	try
+	{
+		HttpConn* init = new HttpConn(host, port);
+		init->build(verb::get,"/account/"+user->username,11);
+		init->request.set(field::cookie, cookie);
+		init->connect();
+		
+		//解析json
+		ptree resp;
+		stringstream resp_ss;
+		resp_ss << init->response.body();
+		read_json(resp_ss, resp);
+
+		int code = resp.get<int>("code");
+		if (code != 3001)
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+			return;
+		}
+		ptree data = resp.get_child("data");
+
+		//添加账户
+		QStringList sl;
+		BOOST_FOREACH(ptree::value_type & v,data)
+		{
+			Account acc(v.second);
+			sl << qs8(acc.id);
+			accounts.push_back(acc);
+		}
+		QStringListModel* slm = new QStringListModel(sl);
+		ui.lv_members->setModel(slm);
+		ui.lv_members->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
+}
+
+//列表选中
+void Index_user::lv_members_click(QModelIndex mi)
+{
+	int index = mi.row();
+	Account acc = accounts[index];
+	char money[50];
+	sprintf(money, "%.2f", acc.money);
+
+	ui.lbl_money_value->setText(qs8(money));
+	if (acc.freeze)
+	{
+		ui.lbl_state_value->setText(qs("已冻结"));
+		ui.lbl_state_value->setStyleSheet(qs("color:red;font:15px;"));
+		ui.btn_trade->setEnabled(false);
+	}
+	else
+	{
+		ui.lbl_state_value->setText(qs("正常"));
+		ui.lbl_state_value->setStyleSheet(qs("color:green;font:15px;"));
+		ui.btn_trade->setEnabled(true);
+	}
+}
+
+//编辑按钮
+void Index_user::btn_edit_click()
+{
+	
+}
+
+//转账按钮
+void Index_user::btn_trade_click()
+{
+	trade_form->show();
+	trade_form->raise();
 }
 
 //最小化按钮
@@ -102,12 +189,7 @@ void Index_user::btn_close_click()
 	parent->raise();
 }
 
-//转账按钮
-void Index_user::btn_trade_click()
-{
-	trade_form->show();
-	trade_form->raise();
-}
+
 
 //拖拽操作
 void Index_user::mousePressEvent(QMouseEvent* event)

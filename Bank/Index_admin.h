@@ -21,6 +21,7 @@ protected:
 	void mouseMoveEvent(QMouseEvent* event);
 	void mouseReleaseEvent(QMouseEvent* event);
 	void init_adlin_list();
+
 private:
 
 	//´°¿ÚÍÏ×§±äÁ¿

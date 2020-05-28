@@ -129,7 +129,7 @@ background-color: rgb(110, 205, 255)</string>
     <property name="styleSheet">
      <string notr="true">QListView
 {
-	border:0px solid gray;
+	border:1px solid white;
 	border-radius:10px;
 	background-color: rgb(250, 250, 250);
 	outline:0px;
