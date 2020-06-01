@@ -9,7 +9,7 @@ class Edit_user_form : public QWidget
 	Q_OBJECT
 
 public:
-	Edit_user_form(QWidget *p,User* u,int o);
+	Edit_user_form(QWidget *p,User* u,int o,boost::beast::http::verb m);
 
 	QWidget* parent;//父窗口
 
@@ -17,6 +17,7 @@ public:
 	std::string host;
 	std::string port;
 	std::string cookie;
+	boost::beast::http::verb method;//连接方法
 
 	User* user;
 

@@ -164,7 +164,7 @@ void Index_user::lv_members_click(QModelIndex mi)
 //±à¼­°´Å¥
 void Index_user::btn_edit_click()
 {
-	Edit_user_form* ed = new Edit_user_form(this,user, 0);
+	Edit_user_form* ed = new Edit_user_form(this,user, 0,verb::put);
 
 	auto reload = [=]()
 	{
@@ -202,8 +202,6 @@ void Index_user::btn_close_click()
 	parent->raise();
 }
 
-
-
 //ÍÏ×§²Ù×÷
 void Index_user::mousePressEvent(QMouseEvent* event)
 {
@@ -217,7 +215,6 @@ void Index_user::mousePressEvent(QMouseEvent* event)
 		windowTopLeftPoint = this->frameGeometry().topLeft();
 	}
 }
-
 
 void Index_user::mouseMoveEvent(QMouseEvent* event)
 {

@@ -43,6 +43,7 @@ public slots:
 	void btn_edit_click();//编辑按钮
 	void btn_trade_click();//转账按钮
 	void lv_members_click(QModelIndex);//列表选中
+
 private:
 	Ui::Index_user ui;
 };

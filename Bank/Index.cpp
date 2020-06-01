@@ -1,10 +1,12 @@
 #include "Index.h"
 #include "Bank.h"
+#include "Edit_user_form.h"
 
 using namespace std;
 using namespace boost::property_tree;
 using namespace boost::beast::http;
 
+//构造函数s
 Index::Index(QWidget* p, string u) :parent(p), username(u)
 {
 	ui.setupUi(this);
@@ -20,7 +22,7 @@ Index::Index(QWidget* p, string u) :parent(p), username(u)
 
 	//设置边框阴影
 	vector<QGraphicsDropShadowEffect*> shadow;
-	ffor(i, 0, 6)
+	ffor(i, 0, 8)
 	{
 		shadow.push_back(new QGraphicsDropShadowEffect);
 		shadow[i]->setBlurRadius(7);
@@ -32,8 +34,10 @@ Index::Index(QWidget* p, string u) :parent(p), username(u)
 	ui.btn_add_user->setGraphicsEffect(shadow[2]);
 	ui.btn_remove_user->setGraphicsEffect(shadow[3]);
 	ui.btn_edit_user->setGraphicsEffect(shadow[4]);
-	ui.btn_freeze_user->setGraphicsEffect(shadow[5]);
-	ui.btn_unfreeze_user->setGraphicsEffect(shadow[6]);
+	ui.btn_add_account->setGraphicsEffect(shadow[5]);
+	ui.btn_freeze_account->setGraphicsEffect(shadow[6]);
+	ui.btn_unfreeze_account->setGraphicsEffect(shadow[7]);
+	ui.btn_remove_account->setGraphicsEffect(shadow[8]);
 
 	QGraphicsDropShadowEffect* shadow_div = new QGraphicsDropShadowEffect;
 	shadow_div->setBlurRadius(3);
@@ -75,8 +79,10 @@ Index::Index(QWidget* p, string u) :parent(p), username(u)
 		ui.btn_add_user->setFont(font);
 		ui.btn_edit_user->setFont(font);
 		ui.btn_remove_user->setFont(font);
-		ui.btn_freeze_user->setFont(font);
-		ui.btn_unfreeze_user->setFont(font);
+		ui.btn_freeze_account->setFont(font);
+		ui.btn_unfreeze_account->setFont(font);
+		ui.btn_add_account->setFont(font);
+		ui.btn_remove_account->setFont(font);
 	}
 
 
@@ -96,6 +102,8 @@ Index::Index(QWidget* p, string u) :parent(p), username(u)
 //初始化用户列表
 void Index::init_user_list()
 {
+	users.clear();
+
 	try
 	{
 		//建立连接
@@ -142,6 +150,100 @@ void Index::init_user_list()
 	}
 }
 
+//列表选中
+void Index::lv_members_click(QModelIndex mi)
+{
+	int index = mi.row();
+	current_index = index;
+	User u = users[index];
+	ui.le_name->setText(qs8(u.name));
+	if (u.is_male)
+		ui.rb_male->setChecked(true);
+	else ui.rb_female->setChecked(true);
+}
+
+//添加客户
+void Index::btn_add_user_click()
+{
+	Edit_user_form* add = new Edit_user_form(this, NULL, 1, verb::post);
+	connect(add, &Edit_user_form::edit_complete, this, &Index::init_user_list);
+	add->show();
+}
+
+//删除客户
+void Index::btn_remove_user_click()
+{
+	try
+	{
+		Bank* p = (Bank*)parent;
+		HttpConn* remove = new HttpConn(p->host, p->port);
+
+		//设定参数
+		remove->build(verb::delete_, "/client/"+users[current_index].username, 11);
+		remove->request.set(field::cookie, p->cookie);
+
+		//连接
+		remove->connect();
+
+		//解析JSON
+		stringstream resp_ss;
+		resp_ss << remove->response.body();
+		//see(qs8(resp_ss.str()));
+
+		ptree resp;
+		read_json(resp_ss, resp);
+		int code = resp.get<int>("code");
+		if (code == 2301)
+		{
+			see(qs("删除成功！"));
+			init_user_list();
+			close();
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
+}
+
+//编辑客户
+void Index::btn_edit_user_click()
+{
+	Edit_user_form* edit = new Edit_user_form(this, &users[current_index], 1, verb::put);
+	connect(edit, &Edit_user_form::edit_complete, this, &Index::init_user_list);
+	edit->show();
+}
+
+//添加账户
+void Index::btn_add_account_click() 
+{
+
+}
+
+//冻结账户
+void Index::btn_freeze_account_click()
+{
+
+}
+
+//解冻账户
+void Index::btn_unfreeze_account_click()
+{
+
+}
+
+//删除账户
+void Index::btn_remove_account_click()
+{
+
+}
+
+
 //最小化按钮
 void Index::btn_minimize_click()
 {
@@ -156,17 +258,6 @@ void Index::btn_close_click()
 	//显示父窗口并暂时置顶
 	parent->show();
 	parent->raise();
-}
-
-//列表选中
-void Index::lv_members_click(QModelIndex mi)
-{
-	int index = mi.row();
-	User u = users[index];
-	ui.le_name->setText(qs8(u.name));
-	if (u.is_male)
-		ui.rb_male->setChecked(true);
-	else ui.rb_female->setChecked(true);
 }
 
 //拖拽操作

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>366</width>
-    <height>361</height>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>5</x>
      <y>5</y>
      <width>356</width>
-     <height>351</height>
+     <height>361</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -93,7 +93,7 @@ background-color: rgb(110, 205, 255)</string>
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>60</y>
+      <y>85</y>
       <width>66</width>
       <height>26</height>
      </rect>
@@ -109,7 +109,7 @@ background-color: rgb(110, 205, 255)</string>
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>150</y>
+      <y>175</y>
       <width>66</width>
       <height>26</height>
      </rect>
@@ -125,7 +125,7 @@ background-color: rgb(110, 205, 255)</string>
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>60</y>
+      <y>85</y>
       <width>126</width>
       <height>26</height>
      </rect>
@@ -156,7 +156,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>105</y>
+      <y>130</y>
       <width>66</width>
       <height>26</height>
      </rect>
@@ -172,7 +172,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>155</x>
-      <y>105</y>
+      <y>130</y>
       <width>51</width>
       <height>26</height>
      </rect>
@@ -188,7 +188,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>105</y>
+      <y>130</y>
       <width>51</width>
       <height>26</height>
      </rect>
@@ -204,7 +204,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>150</y>
+      <y>175</y>
       <width>126</width>
       <height>22</height>
      </rect>
@@ -226,7 +226,7 @@ font: 15pt &quot;Calibri&quot;;</string>
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>190</y>
+      <y>215</y>
       <width>66</width>
       <height>26</height>
      </rect>
@@ -242,7 +242,7 @@ font: 15pt &quot;Calibri&quot;;</string>
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>190</y>
+      <y>215</y>
       <width>126</width>
       <height>26</height>
      </rect>
@@ -276,7 +276,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>65</x>
-      <y>240</y>
+      <y>265</y>
       <width>81</width>
       <height>26</height>
      </rect>
@@ -292,7 +292,7 @@ QLineEdit:hover
     <property name="geometry">
      <rect>
       <x>145</x>
-      <y>240</y>
+      <y>265</y>
       <width>126</width>
       <height>26</height>
      </rect>
@@ -322,6 +322,53 @@ QLineEdit:hover
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="lbl_username">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>45</y>
+      <width>66</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;</string>
+    </property>
+    <property name="text">
+     <string>用户名：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_username">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>45</y>
+      <width>126</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>lbl_title</zorder>
    <zorder>btn_close</zorder>
    <zorder>lbl_name</zorder>
@@ -335,6 +382,8 @@ QLineEdit:hover
    <zorder>le_password</zorder>
    <zorder>lbl_re_password</zorder>
    <zorder>le_re_password</zorder>
+   <zorder>lbl_username</zorder>
+   <zorder>le_username</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

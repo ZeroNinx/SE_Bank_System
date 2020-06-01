@@ -8,18 +8,21 @@ using namespace std;
 using namespace boost::property_tree;
 using namespace boost::beast::http;
 
-Edit_user_form::Edit_user_form(QWidget *p,User* u,int o)
+Edit_user_form::Edit_user_form(QWidget* p, User* u, int o, verb m)
 {
 	parent = p;
 	user = u;
 	opt = o;
+	method = m;
 
 	ui.setupUi(this);
 	//设定窗口图标
 	setWindowIcon(QIcon("Resources/icon.png"));
 
 	//设定窗口文字
-	ui.lbl_title->setText(qs("编辑信息"));
+	if (method == verb::put)
+		ui.lbl_title->setText(qs("编辑信息"));
+	else ui.lbl_title->setText(qs("创建客户"));
 
 	//设定背景透明
 	setAttribute(Qt::WA_TranslucentBackground, true);
@@ -35,8 +38,8 @@ Edit_user_form::Edit_user_form(QWidget *p,User* u,int o)
 	ui.frame_window->setGraphicsEffect(effect);
 
 	//添加登录按钮
-	GradientsBtn* btn_submit = new GradientsBtn(this, "编辑");
-	btn_submit->setGeometry(20, 300, 326, 36);
+	GradientsBtn* btn_submit = new GradientsBtn(this, method == verb::put ? "编辑" : "创建");
+	btn_submit->setGeometry(20, 315, 316, 36);
 	btn_submit->raise();
 	connect(btn_submit, &GradientsBtn::clicked, this, &Edit_user_form::btn_submit_click);
 
@@ -57,6 +60,7 @@ Edit_user_form::Edit_user_form(QWidget *p,User* u,int o)
 		//载入，设置字体
 		int id = QFontDatabase::addApplicationFontFromData(fontfile2.readAll());
 		QFont font(QFontDatabase::applicationFontFamilies(id).at(0), 15, 10);
+		ui.lbl_username->setFont(font);
 		ui.lbl_name->setFont(font);
 		ui.lbl_birthday->setFont(font);
 		ui.lbl_password->setFont(font);
@@ -99,11 +103,16 @@ Edit_user_form::Edit_user_form(QWidget *p,User* u,int o)
 	}
 
 	//初始化参数
-	ui.le_name->setText(qs8(user->name));
-	if (user->is_male)
-		ui.rb_male->setChecked(true);
-	else ui.rb_female->setChecked(true);
-	ui.de_birthday->setDate(QDate::fromString(qs8(user->birthday), qs8("yyyy-MM-dd")));
+	if (method == verb::put)
+	{
+		ui.le_username->setText(qs8(user->username));
+		ui.le_username->setReadOnly(true);
+		ui.le_name->setText(qs8(user->name));
+		if (user->is_male)
+			ui.rb_male->setChecked(true);
+		else ui.rb_female->setChecked(true);
+		ui.de_birthday->setDate(QDate::fromString(qs8(user->birthday), qs8("yyyy-MM-dd")));
+	}
 }
 
 //关闭按钮
@@ -116,7 +125,7 @@ void Edit_user_form::btn_close_click()
 void Edit_user_form::btn_submit_click()
 {
 	//输入检查
-	if (ui.le_name->text().isEmpty() || ui.le_password->text().isEmpty() || ui.le_re_password->text().isEmpty())
+	if (ui.le_username->text().isEmpty()|| ui.le_name->text().isEmpty() || ui.le_password->text().isEmpty() || ui.le_re_password->text().isEmpty()||(!ui.rb_female->isChecked()&&!ui.rb_male->isChecked()))
 	{
 		see(qs("请输入完整！"));
 		return;
@@ -130,7 +139,7 @@ void Edit_user_form::btn_submit_click()
 	//生成数据
 	ptree req;
 	stringstream ss;
-	req.put("account", user->username);
+	req.put("account", ui.le_username->text().toStdString());
 	req.put("name",ui.le_name->text().toStdString());
 	req.put("password", ui.le_password->text().toStdString());
 	req.put("sex", ui.rb_male->isChecked() ? 1 : 0);
@@ -142,7 +151,7 @@ void Edit_user_form::btn_submit_click()
 	{
 		//发送请求
 		HttpConn* edit = new HttpConn(host, port);
-		edit->build(verb::put, "/client", 11);
+		edit->build(method, "/client", 11);
 		edit->request.set(field::content_type, "application/json");
 		edit->request.set(field::content_length, ss.str().length());
 		edit->request.set(field::cookie, cookie);
@@ -157,14 +166,22 @@ void Edit_user_form::btn_submit_click()
 		ptree resp;
 		read_json(resp_ss, resp);
 		int code = resp.get<int>("code");
-		if (code == 2101)
+
+		//修改
+		if (code == 2101&&method == verb::put)
 		{
 			see(qs("修改成功！"));
 
 			user->birthday = ui.de_birthday->date().toString("yyyy-MM-dd").toStdString();
 			user->name = ui.le_name->text().toStdString();
 			user->is_male = ui.rb_male->isChecked() ? 1 : 0;
+			emit edit_complete();
+			close();
+		}
+		else if (code == 2201)
+		{
 
+			see(qs("创建成功！"));
 			emit edit_complete();
 			close();
 		}
