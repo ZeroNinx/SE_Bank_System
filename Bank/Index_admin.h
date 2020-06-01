@@ -35,6 +35,7 @@ private:
 
 	//管理员存放数组
 	std::vector<Admin> admins;
+	int current_index;
 
 	//权限表映射
 	QCheckBox* perms[8];

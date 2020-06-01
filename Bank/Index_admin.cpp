@@ -181,6 +181,7 @@ void Index_admin::lv_members_click(QModelIndex mi)
 {
 	//获取下标
 	int index = mi.row();
+	current_index = index;
 	//see(qs(to_string(index)));
 	
 	//获取用户名

@@ -1,10 +1,20 @@
 #include "Trade.h"
 #include "GradientsBtn.h"
-using namespace std;
+#include "Index_user.h"
 
-Trade::Trade()
+using namespace std;
+using namespace boost::property_tree;
+using namespace boost::beast::http;
+
+Trade::Trade(QWidget* p,Account* a):account(a)
 {
 	ui.setupUi(this);
+	Index_user* pr = (Index_user*)p;
+
+	host = pr->host;
+	port = pr->port;
+	cookie = pr->cookie;
+
 
 	//设定窗口图标
 	setWindowIcon(QIcon("Resources/icon.png"));
@@ -75,7 +85,66 @@ void Trade::btn_close_click()
 //执行按钮
 void Trade::btn_submit_click()
 {
-	
+	if (ui.le_account->text().isEmpty() || ui.le_money->text().isEmpty())
+	{
+		see(qs("请输入完整!"));
+		return;
+	}
+	if (stod(ui.le_money->text().toStdString()) >account->money)
+	{
+		see(qs("金额不足！!"));
+		return;
+	}
+
+	try
+	{
+		HttpConn* trade = new HttpConn(host, port);
+
+		ptree req;
+		stringstream ss;
+		req.put("accountId", account->id);
+		req.put("anoAccountId", ui.le_account->text().toStdString());
+
+		char money[50];
+		sprintf(money, "%.2f", (stod(ui.le_money->text().toStdString())));
+
+		req.put("money", money);
+		write_json(ss, req);
+		//see(qs(ss.str()));
+
+		//设定参数
+		trade->build(verb::put, "/transfer", 11);
+		trade->request.set(field::cookie, cookie);
+		trade->request.set(field::content_type, "application/json");
+		trade->request.set(field::content_length, ss.str().length());
+		trade->request.body() = ss.str();
+
+		//连接
+		trade->connect();
+
+		//解析JSON
+		stringstream resp_ss;
+		resp_ss << trade->response.body();
+		//see(qs8(resp_ss.str()));
+
+		ptree resp;
+		read_json(resp_ss, resp);
+		int code = resp.get<int>("code");
+		if (code == 6001)
+		{
+			see(qs("转账成功！"));
+			emit trade_success();
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+	}
+	catch (const std::exception& e)
+	{
+		see(qs(e.what()));
+	}
 }
 
 

@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "ui_Index.h"
+#include "Account.h"
 #include "User.h"
 
 class Index : public QWidget
@@ -32,7 +33,8 @@ private:
 
 	//保存用户的数组
 	std::vector<User> users;
-	int current_index;
+	int current_user_index = 9999;
+
 public slots:
 	void btn_minimize_click();//最小化按钮
 	void btn_close_click();//关闭按钮
@@ -41,10 +43,9 @@ public slots:
 	void btn_add_user_click();//添加客户
 	void btn_remove_user_click();//删除客户
 	void btn_edit_user_click();//编辑客户
-	void btn_add_account_click();//添加账户
-	void btn_freeze_account_click();//冻结账户
-	void btn_unfreeze_account_click();//解冻账户
-	void btn_remove_account_click();//删除账户
+	void btn_account_list_click();//显示账户列表
+	void btn_freeze_user_click();//冻结客户
+	void btn_unfreeze_user_click();//解冻客户
 
 private:
 	Ui::Index ui;

@@ -123,7 +123,7 @@ void Index_user::init_account_list()
 		QStringList sl;
 		BOOST_FOREACH(ptree::value_type & v,data)
 		{
-			Account acc(v.second);
+			Account acc(v.second,user->username);
 			sl << qs8(acc.id);
 			accounts.push_back(acc);
 		}
@@ -142,9 +142,15 @@ void Index_user::init_account_list()
 void Index_user::lv_members_click(QModelIndex mi)
 {
 	int index = mi.row();
+	current_account_index = index;
+
 	Account acc = accounts[index];
 	char money[50];
 	sprintf(money, "%.2f", acc.money);
+
+	//测试
+	ui.le_name->setText(qs(acc.id));
+	//测试
 
 	ui.lbl_money_value->setText(qs8(money));
 	if (acc.freeze)
@@ -182,8 +188,12 @@ void Index_user::btn_edit_click()
 //转账按钮
 void Index_user::btn_trade_click()
 {
-	trade_form->show();
-	trade_form->raise();
+	if (current_account_index >= 0 && current_account_index < accounts.size())
+	{
+		Trade* td = new Trade(this, &accounts[current_account_index]);
+		connect(td, &Trade::trade_success, this, &Index_user::init_account_list);
+		td->show();
+	}
 }
 
 //最小化按钮

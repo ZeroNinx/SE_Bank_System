@@ -2,13 +2,18 @@
 
 #include "stdafx.h"
 #include "ui_Trade.h"
+#include "Account.h"
 
 class Trade : public QWidget
 {
 	Q_OBJECT
 
 public:
-	Trade();
+	Trade(QWidget* p,Account* a);
+
+	std::string host;
+	std::string port;
+	std::string cookie;
 
 protected:
 	//ÍÏ×§´°¿Ú
@@ -22,6 +27,10 @@ private:
 	bool m_bDrag;
 	QPoint mouseStartPoint;
 	QPoint windowTopLeftPoint;
+	Account* account;
+
+signals:
+	void trade_success();
 
 public slots:
 	void btn_close_click();
