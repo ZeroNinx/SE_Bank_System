@@ -212,7 +212,7 @@ border-radius:10px;</string>
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(211, 211, 211);
-	font:15px;
+	font:16px;
 }
 QPushButton::hover
 {
@@ -422,7 +422,7 @@ QLineEdit:hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(211, 211, 211);
-	font:15px;
+	font:16px;
 }
 QPushButton::hover
 {
@@ -650,7 +650,7 @@ font: 13px;</string>
    <sender>btn_edit</sender>
    <signal>clicked()</signal>
    <receiver>Index_user</receiver>
-   <slot>btn_trade_click()</slot>
+   <slot>btn_edit_click()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>335</x>

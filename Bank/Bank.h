@@ -17,7 +17,7 @@ public:
 	Bank(QFrame *parent = Q_NULLPTR);
 
 	//连接参数
-	const std::string host = "127.0.0.1";
+	const std::string host = "39.105.182.121";
 	const std::string port = "8001";
 	std::string cookie;
 

@@ -6,6 +6,7 @@ using namespace std;
 using namespace boost::property_tree;
 using namespace boost::beast::http;
 
+//构造函数
 Index_user::Index_user(QWidget* p, User* u) :parent(p), user(u)
 {
 	ui.setupUi(this);
@@ -163,7 +164,19 @@ void Index_user::lv_members_click(QModelIndex mi)
 //编辑按钮
 void Index_user::btn_edit_click()
 {
-	
+	Edit_user_form* ed = new Edit_user_form(this,user, 0);
+
+	auto reload = [=]()
+	{
+		ui.le_name->setText(qs8(user->name));
+		if (user->is_male)
+			ui.rb_male->setChecked(true);
+		else ui.rb_female->setChecked(true);
+		ui.de_birthday->setDate(QDate::fromString(qs(user->birthday), qs("yyyy-MM-dd")));
+	};
+
+	connect(ed, &Edit_user_form::edit_complete, reload);
+	ed->show();
 }
 
 //转账按钮
