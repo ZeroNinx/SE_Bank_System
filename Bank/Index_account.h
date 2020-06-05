@@ -1,9 +1,11 @@
 #pragma once
 
 #include "stdafx.h"
-#include "ui_Index_account.h"
 #include "Account.h"
 #include "User.h"
+
+using namespace QtCharts;
+#include "ui_Index_account.h";
 
 class Index_account : public QWidget
 {
@@ -22,6 +24,7 @@ protected:
 	void mouseReleaseEvent(QMouseEvent* event);
 
 	void init_user_list();
+	void init_graphics();
 private:
 	//ÊôÐÔ
 	QWidget* parent;//¸¸´°¿Ú

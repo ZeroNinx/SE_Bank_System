@@ -20,6 +20,9 @@ Index_user::Index_user(QWidget* p, User* u) :parent(p), user(u)
 	//隐藏标题栏
 	setWindowFlags(Qt::FramelessWindowHint);
 
+	//图表抗锯齿
+	ui.chart_view->setRenderHint(QPainter::Antialiasing);
+
 	//设置边框阴影
 	vector<QGraphicsDropShadowEffect*> shadow;
 	ffor(i, 0, 6)
@@ -34,6 +37,7 @@ Index_user::Index_user(QWidget* p, User* u) :parent(p), user(u)
 	ui.le_search->setGraphicsEffect(shadow[1]);
 	ui.btn_edit->setGraphicsEffect(shadow[2]);
 	ui.btn_trade->setGraphicsEffect(shadow[3]);
+	ui.chart_view->setGraphicsEffect(shadow[4]);
 
 	QGraphicsDropShadowEffect* shadow_div = new QGraphicsDropShadowEffect;
 	shadow_div->setBlurRadius(3);
@@ -164,6 +168,101 @@ void Index_user::lv_members_click(QModelIndex mi)
 		ui.lbl_state_value->setText(qs("正常"));
 		ui.lbl_state_value->setStyleSheet(qs("color:green;font:15px;"));
 		ui.btn_trade->setEnabled(true);
+	}
+
+	init_graphics();
+}
+
+//初始化折线图
+void Index_user::init_graphics()
+{
+	try
+	{
+		//建立套接字
+		HttpConn* history = new HttpConn(host, port);
+		history->build(verb::get, "/moneyChanges/" + accounts[current_account_index].id, 11);
+		history->request.set(field::cookie, cookie);
+		history->connect();
+		//see(qs(history->response.body()));
+
+		//解析json
+		ptree resp;
+		stringstream resp_ss;
+		resp_ss << history->response.body();
+		read_json(resp_ss, resp);
+		int code = resp.get<int>("code");
+		if (code == 5001)
+		{
+			double money = 0;
+			double max_money = 0;
+			int cnt = 0;
+
+			//创建图表
+			QChart* chart = new QChart();
+
+			//创建点集
+			QLineSeries* ls = new QLineSeries();
+			ls->setPen(QPen(Qt::blue, 1));
+			ls->append(0, 0);
+
+			vector<string> times;
+
+			//添加点
+			ptree data = resp.get_child("data");
+			BOOST_FOREACH(ptree::value_type & v, data)
+			{
+				double money_change = v.second.get<double>("money");
+				if (accounts[current_account_index].id != v.second.get<string>("accountId"))
+					money -= money_change;
+				else money += money_change;
+
+				times.push_back(v.second.get<string>("time"));
+
+				max_money = max(money, max_money);
+				ls->append(QPointF(++cnt, money));
+			}
+
+			//设置点集
+			chart->addSeries(ls);
+
+			//创建坐标轴
+			QValueAxis* axisX = new QValueAxis;
+			axisX->setRange(0, cnt);
+			axisX->setLabelsVisible(false);
+			axisX->setGridLineVisible(true);
+			axisX->setTickCount(cnt + 1);     //设置多少格
+
+			//创建坐标轴
+			QValueAxis* axisY = new QValueAxis;
+			axisY->setRange(0, max_money + 10);
+			axisY->setLabelFormat("%.2f"); //设置刻度的格式
+			axisY->setGridLineVisible(true);
+			axisY->setTickCount(5);     //设置多少格
+
+			//QChart加载轴,并把轴附加到点集上
+			chart->setAxisY(axisY, ls);
+			chart->setAxisX(axisX, ls);
+
+			//设置样式
+			chart->setAnimationOptions(QChart::SeriesAnimations);
+			chart->setTheme(QChart::ChartThemeQt);
+			chart->setMargins(QMargins(0, 10, 0, 0));
+
+			//隐藏图例
+			chart->legend()->hide();
+
+			//显示	
+			ui.chart_view->setChart(chart);
+		}
+		else
+		{
+			string msg = resp.get<string>("msg");
+			see(qs8(msg));
+		}
+	}
+	catch (const std::exception&)
+	{
+
 	}
 }
 

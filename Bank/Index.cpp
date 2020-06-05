@@ -232,13 +232,13 @@ void Index::btn_account_list_click()
 	}
 }
 
-//冻结账户
+//冻结客户（未完成）
 void Index::btn_freeze_user_click()
 {
 
 }
 
-//解冻账户
+//解冻客户（未完成）
 void Index::btn_unfreeze_user_click()
 {
 

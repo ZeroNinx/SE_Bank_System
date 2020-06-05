@@ -49,9 +49,6 @@
     <ClCompile Include="Index_user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Index_admin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Index_admin_user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -76,6 +73,9 @@
     <ClCompile Include="Index_account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Index_admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Bank.ui">
@@ -85,9 +85,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Index.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Index_admin.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Index_admin_user.ui">
@@ -103,6 +100,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Index_account.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Index_admin.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -147,9 +147,6 @@
     <QtMoc Include="Index_user.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Index_admin.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Index_admin_user.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -163,6 +160,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Index_account.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Index_admin.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

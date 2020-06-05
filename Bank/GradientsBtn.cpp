@@ -1,6 +1,7 @@
 #include "GradientsBtn.h"
 
 using namespace std;
+using namespace QtCharts;
 
 GradientsBtn::GradientsBtn(QWidget* parent,string text) :QPushButton(parent)
 {

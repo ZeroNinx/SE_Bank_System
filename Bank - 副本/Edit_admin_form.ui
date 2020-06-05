@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Edit_admin_form</class>
+ <widget class="QWidget" name="Edit_admin_form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>556</width>
+    <height>501</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>创建管理员</string>
+  </property>
+  <widget class="QFrame" name="frame_window">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>546</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame[objectName=&quot;frame_window&quot;]
+{
+	background-color: rgb(250, 250, 250);
+	border-radius:15px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lbl_title">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>546</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;
+color:rgb(20,20,20);
+padding-bottom:1px;
+border-top-left-radius:14px;
+border-top-right-radius:14px;
+background-color: rgb(110, 205, 255)</string>
+    </property>
+    <property name="text">
+     <string>创建管理员</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>505</x>
+      <y>0</y>
+      <width>41</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	color:white;
+	border-top-right-radius:14px;
+	font: 20pt &quot;Calibri&quot;;/*字体*/
+	background-color: rgba(255, 255, 255,0);/*背景色*/
+	border:0px;
+}
+QPushButton:hover
+{
+	background-color: rgba(255, 255, 255,0.5);
+	color: rgb(255, 0, 0);
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>×</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_account">
+    <property name="geometry">
+     <rect>
+      <x>115</x>
+      <y>50</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_username">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>55</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>昵称：</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>235</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>修改客户信息</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_account">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>55</y>
+      <width>71</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>用户名：</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_1">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>165</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>查看客户信息</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_8">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>375</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>删除账户</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>305</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>增加客户</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_7">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>305</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>冻结账户</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_6">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>235</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>查看账户</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_username">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>50</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_4">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>375</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>删除客户</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_5">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>165</y>
+      <width>156</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox
+{
+	font-size:14px;
+	border-radius:2px;
+}
+
+QCheckBox::indicator:hover
+{
+	width:25px;
+	height:25px;
+
+}
+
+QCheckBox::indicator:unchecked
+{
+	width:25px;
+	height:25px;
+	image:url(Resources/CheckedBox/unchecked.png);
+}
+
+QCheckBox::indicator:unchecked:hover
+{
+	image:url(Resources/CheckedBox/unchecked_hover.png);
+}
+
+QCheckBox::indicator:checked
+{
+	image:url(Resources/CheckedBox/checked.png);
+}
+
+QCheckBox::indicator:checked:hover
+{
+	image:url(Resources/CheckedBox/checked_hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>增加账户</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_re_password">
+    <property name="geometry">
+     <rect>
+      <x>285</x>
+      <y>110</y>
+      <width>81</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>重复密码：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_password">
+    <property name="geometry">
+     <rect>
+      <x>115</x>
+      <y>105</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_re_password">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>105</y>
+      <width>136</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_password">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>110</y>
+      <width>71</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:18px</string>
+    </property>
+    <property name="text">
+     <string>密码：</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_close</sender>
+   <signal>clicked()</signal>
+   <receiver>Edit_admin_form</receiver>
+   <slot>btn_close_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>-10</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>btn_close_click()</slot>
+ </slots>
+</ui>

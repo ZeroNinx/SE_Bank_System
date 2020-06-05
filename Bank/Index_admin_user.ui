@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>491</height>
+    <width>591</width>
+    <height>316</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>5</x>
      <y>5</y>
-     <width>736</width>
-     <height>481</height>
+     <width>580</width>
+     <height>306</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -37,9 +37,9 @@
    <widget class="QPushButton" name="btn_close">
     <property name="geometry">
      <rect>
-      <x>695</x>
+      <x>540</x>
       <y>2</y>
-      <width>41</width>
+      <width>40</width>
       <height>30</height>
      </rect>
     </property>
@@ -67,7 +67,7 @@ QPushButton:hover
    <widget class="QPushButton" name="btn_minimize">
     <property name="geometry">
      <rect>
-      <x>655</x>
+      <x>500</x>
       <y>2</y>
       <width>40</width>
       <height>30</height>
@@ -98,7 +98,7 @@ QPushButton:hover
      <rect>
       <x>2</x>
       <y>2</y>
-      <width>732</width>
+      <width>577</width>
       <height>30</height>
      </rect>
     </property>
@@ -122,8 +122,8 @@ background-color: rgb(110, 205, 255)</string>
      <rect>
       <x>13</x>
       <y>75</y>
-      <width>161</width>
-      <height>396</height>
+      <width>156</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -161,7 +161,7 @@ QListView::item:selected
      <rect>
       <x>45</x>
       <y>40</y>
-      <width>125</width>
+      <width>121</width>
       <height>26</height>
      </rect>
     </property>
@@ -177,32 +177,12 @@ background-color: rgb(250, 250, 250);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>185</x>
-      <y>270</y>
-      <width>536</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 170, 255);
-border-radius:10px;</string>
-    </property>
-    <property name="text">
-     <string>折线图（伪）</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_add_user">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>90</y>
-      <width>71</width>
+      <x>200</x>
+      <y>85</y>
+      <width>86</width>
       <height>36</height>
      </rect>
     </property>
@@ -212,6 +192,7 @@ border-radius:10px;</string>
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -220,147 +201,15 @@ QPushButton::hover
 </string>
     </property>
     <property name="text">
-     <string>新增用户</string>
+     <string>新增客户</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_remove_user">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>150</y>
-      <width>71</width>
-      <height>36</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton
-{
-	border:0px solid gray;
-	border-radius:10px;
-	background-color: rgb(232, 232, 232);
-}
-QPushButton::hover
-{
-	border:2px solid rgb(0, 170, 255);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>删除用户</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_edit_user">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>210</y>
-      <width>71</width>
-      <height>36</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton
-{
-	border:0px solid gray;
-	border-radius:10px;
-	background-color: rgb(232, 232, 232);
-}
-QPushButton::hover
-{
-	border:2px solid rgb(0, 170, 255);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>修改用户</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>95</y>
-      <width>66</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 127);</string>
-    </property>
-    <property name="text">
-     <string>姓名：</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>155</y>
-      <width>66</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 127);</string>
-    </property>
-    <property name="text">
-     <string>性别：</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>215</y>
-      <width>66</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 127);</string>
-    </property>
-    <property name="text">
-     <string>生日：</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>485</x>
-      <y>95</y>
-      <width>76</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 127);</string>
-    </property>
-    <property name="text">
-     <string>存款：</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>485</x>
-      <y>155</y>
-      <width>76</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 127);</string>
-    </property>
-    <property name="text">
-     <string>账户状态：</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_freeze_user">
-    <property name="geometry">
-     <rect>
-      <x>495</x>
-      <y>210</y>
-      <width>71</width>
+      <x>460</x>
+      <y>85</y>
+      <width>86</width>
       <height>36</height>
      </rect>
     </property>
@@ -371,6 +220,7 @@ QPushButton::hover
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
 	color:red;
+	font:13px;
 }
 QPushButton::hover
 {
@@ -379,15 +229,15 @@ QPushButton::hover
 </string>
     </property>
     <property name="text">
-     <string>冻结账户</string>
+     <string>删除客户</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_unfreeze_user">
+   <widget class="QPushButton" name="btn_edit_user">
     <property name="geometry">
      <rect>
-      <x>605</x>
-      <y>210</y>
-      <width>71</width>
+      <x>330</x>
+      <y>85</y>
+      <width>86</width>
       <height>36</height>
      </rect>
     </property>
@@ -397,6 +247,7 @@ QPushButton::hover
 	border:0px solid gray;
 	border-radius:10px;
 	background-color: rgb(232, 232, 232);
+	font:13px;
 }
 QPushButton::hover
 {
@@ -405,75 +256,222 @@ QPushButton::hover
 </string>
     </property>
     <property name="text">
-     <string>解冻账户</string>
+     <string>修改客户</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QDateEdit" name="de_birthday">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>95</y>
-      <width>71</width>
-      <height>26</height>
+      <x>250</x>
+      <y>250</y>
+      <width>116</width>
+      <height>22</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>155</y>
-      <width>71</width>
-      <height>26</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255,0);
+border:1px solid white;
+border-left-color: rgba(255, 255, 255,0);
+border-right-color: rgba(255, 255, 255,0);
+border-top-color: rgba(255, 255, 255,0);
+border-bottom-color: rgb(85, 170, 255);
+font: 15pt &quot;Calibri&quot;;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QRadioButton" name="rb_male">
     <property name="geometry">
      <rect>
-      <x>595</x>
-      <y>95</y>
-      <width>101</width>
+      <x>260</x>
+      <y>195</y>
+      <width>51</width>
       <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border:1px solid;</string>
+     <string notr="true">font:13px</string>
     </property>
     <property name="text">
-     <string>xxx</string>
+     <string>男</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QRadioButton" name="rb_female">
     <property name="geometry">
      <rect>
-      <x>595</x>
-      <y>155</y>
-      <width>101</width>
+      <x>315</x>
+      <y>195</y>
+      <width>51</width>
       <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border:1px solid;</string>
+     <string notr="true">font:13px</string>
     </property>
     <property name="text">
-     <string>xxx</string>
+     <string>女</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLineEdit" name="le_name">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>215</y>
-      <width>71</width>
+      <x>245</x>
+      <y>140</y>
+      <width>111</width>
       <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border:1px solid;</string>
+     <string notr="true">QLineEdit
+{
+	
+	background-color: rgba(255, 255, 255,0);
+	border:1px solid white;
+	border-left-color: rgba(255, 255, 255,0);
+	border-right-color: rgba(255, 255, 255,0);
+	border-top-color: rgba(255, 255, 255,0);
+	border-bottom-color: rgb(85, 170, 255);
+	font: 15pt &quot;Calibri&quot;;
+}
+
+QLineEdit:hover
+{
+	border-bottom-color: rgba(85, 170, 255,0.6);
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_name">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>145</y>
+      <width>66</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;</string>
     </property>
     <property name="text">
-     <string>xxx</string>
+     <string>姓名：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_birthday">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>250</y>
+      <width>66</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;</string>
+    </property>
+    <property name="text">
+     <string>生日：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_sex">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>195</y>
+      <width>66</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:17px;</string>
+    </property>
+    <property name="text">
+     <string>性别：</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_account_list">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>140</y>
+      <width>146</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+	font:13px;
+}
+QPushButton::hover
+{
+	border:2px solid rgb(0, 170, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>账户列表</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_freeze_user">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>200</y>
+      <width>146</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+	color:blue;
+	font:13px;
+}
+QPushButton::hover
+{
+	border:2px solid blue;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>冻结客户</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_unfreeze_user">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>255</y>
+      <width>146</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	border:0px solid gray;
+	border-radius:10px;
+	background-color: rgb(232, 232, 232);
+	font:13px;
+}
+QPushButton::hover
+{
+	border:2px solid rgb(0, 170, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>解冻客户</string>
     </property>
    </widget>
    <zorder>lbl_title</zorder>
@@ -481,30 +479,27 @@ QPushButton::hover
    <zorder>btn_minimize</zorder>
    <zorder>lv_members</zorder>
    <zorder>le_search</zorder>
-   <zorder>label</zorder>
    <zorder>btn_add_user</zorder>
    <zorder>btn_remove_user</zorder>
    <zorder>btn_edit_user</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_6</zorder>
+   <zorder>de_birthday</zorder>
+   <zorder>rb_male</zorder>
+   <zorder>rb_female</zorder>
+   <zorder>le_name</zorder>
+   <zorder>lbl_name</zorder>
+   <zorder>lbl_birthday</zorder>
+   <zorder>lbl_sex</zorder>
+   <zorder>btn_account_list</zorder>
    <zorder>btn_freeze_user</zorder>
    <zorder>btn_unfreeze_user</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>label_7</zorder>
-   <zorder>label_8</zorder>
-   <zorder>label_9</zorder>
   </widget>
   <widget class="QFrame" name="frame_blur">
    <property name="geometry">
     <rect>
      <x>5</x>
      <y>5</y>
-     <width>736</width>
-     <height>481</height>
+     <width>581</width>
+     <height>306</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -535,12 +530,12 @@ border-radius:15px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_state">
+  <widget class="QLabel" name="lbl_welcome">
    <property name="geometry">
     <rect>
      <x>200</x>
      <y>45</y>
-     <width>571</width>
+     <width>350</width>
      <height>26</height>
     </rect>
    </property>
@@ -561,7 +556,7 @@ font: 13px;</string>
     <rect>
      <x>190</x>
      <y>75</y>
-     <width>536</width>
+     <width>376</width>
      <height>1</height>
     </rect>
    </property>
@@ -580,8 +575,8 @@ font: 13px;</string>
   <zorder>frame_blur</zorder>
   <zorder>frame_window</zorder>
   <zorder>lbl_search</zorder>
-  <zorder>lbl_state</zorder>
   <zorder>lbl_state_div</zorder>
+  <zorder>lbl_welcome</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
@@ -593,12 +588,12 @@ font: 13px;</string>
    <slot>btn_minimize_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>735</x>
+     <x>544</x>
      <y>17</y>
     </hint>
     <hint type="destinationlabel">
-     <x>712</x>
-     <y>-15</y>
+     <x>590</x>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -609,12 +604,124 @@ font: 13px;</string>
    <slot>btn_close_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>770</x>
+     <x>584</x>
      <y>20</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
-     <y>-6</y>
+     <x>590</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lv_members</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>lv_members_click(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_add_user</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_add_user_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>203</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_remove_user</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_remove_user_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>501</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>291</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_edit_user</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_edit_user_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_account_list</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_account_list_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>168</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>433</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_freeze_user</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_freeze_user_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>434</x>
+     <y>213</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>-18</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_unfreeze_user</sender>
+   <signal>clicked()</signal>
+   <receiver>Index_admin_user</receiver>
+   <slot>btn_unfreeze_user_click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>595</x>
+     <y>270</y>
     </hint>
    </hints>
   </connection>
@@ -622,7 +729,12 @@ font: 13px;</string>
  <slots>
   <slot>btn_minimize_click()</slot>
   <slot>btn_close_click()</slot>
-  <slot>btn_get_money_click()</slot>
-  <slot>btn_save_money_click()</slot>
+  <slot>lv_members_click(QModelIndex)</slot>
+  <slot>btn_add_user_click()</slot>
+  <slot>btn_remove_user_click()</slot>
+  <slot>btn_edit_user_click()</slot>
+  <slot>btn_account_list_click()</slot>
+  <slot>btn_freeze_user_click()</slot>
+  <slot>btn_unfreeze_user_click()</slot>
  </slots>
 </ui>

@@ -44,7 +44,7 @@
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>charts;core;gui;widgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2017_64</QtInstall>
@@ -66,7 +66,8 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Zero\Documents\Boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib;C:\Users\Zero\Documents\Boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Chartsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -110,10 +111,10 @@
     <QtUic Include="Edit_user_form.ui" />
     <QtUic Include="Index.ui" />
     <QtUic Include="Index_account.ui" />
+    <QtUic Include="Index_admin.ui" />
     <QtUic Include="Index_admin_user.ui" />
     <QtUic Include="Index_user.ui" />
     <QtUic Include="Trade.ui" />
-    <QtUic Include="Index_admin.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Bank.qrc" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Account.h" />
     <QtMoc Include="Edit_user_form.h" />
     <QtMoc Include="Index_account.h" />
+    <QtMoc Include="Index_admin.h" />
     <ClInclude Include="User.h" />
     <QtMoc Include="Index.h" />
     <QtMoc Include="ScrollBtn.h" />
@@ -131,7 +133,6 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="HttpConn.h" />
     <QtMoc Include="Index_user.h" />
-    <QtMoc Include="Index_admin.h" />
     <QtMoc Include="Index_admin_user.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="stdafx.h" />

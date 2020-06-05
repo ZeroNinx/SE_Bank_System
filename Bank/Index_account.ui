@@ -177,26 +177,6 @@ background-color: rgb(250, 250, 250);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>185</x>
-      <y>155</y>
-      <width>536</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 170, 255);
-border-radius:10px;</string>
-    </property>
-    <property name="text">
-     <string>折线图（伪）</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_freeze_account">
     <property name="geometry">
      <rect>
@@ -396,12 +376,25 @@ QPushButton::hover
      <string>删除账户</string>
     </property>
    </widget>
+   <widget class="QChartView" name="chart_view" native="true">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>155</y>
+      <width>531</width>
+      <height>196</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+   </widget>
    <zorder>lbl_title</zorder>
    <zorder>btn_close</zorder>
    <zorder>btn_minimize</zorder>
    <zorder>lv_members</zorder>
    <zorder>le_search</zorder>
-   <zorder>label</zorder>
    <zorder>btn_freeze_account</zorder>
    <zorder>btn_unfreeze_account</zorder>
    <zorder>lbl_state_value</zorder>
@@ -411,6 +404,7 @@ QPushButton::hover
    <zorder>lbl_state</zorder>
    <zorder>btn_add_account</zorder>
    <zorder>btn_remove_account</zorder>
+   <zorder>chart_view</zorder>
   </widget>
   <widget class="QLabel" name="lbl_search">
    <property name="geometry">
@@ -454,6 +448,14 @@ border-radius:15px;</string>
   <zorder>lbl_search</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header location="global">qchartview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

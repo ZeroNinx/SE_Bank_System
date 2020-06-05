@@ -177,26 +177,6 @@ background-color: rgb(250, 250, 250);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>270</y>
-      <width>531</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 170, 255);
-border-radius:10px;</string>
-    </property>
-    <property name="text">
-     <string>折线图（伪）</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_trade">
     <property name="geometry">
      <rect>
@@ -473,12 +453,25 @@ font: 15pt &quot;Calibri&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QChartView" name="chart_view" native="true">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>270</y>
+      <width>531</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+   </widget>
    <zorder>lbl_title</zorder>
    <zorder>btn_close</zorder>
    <zorder>btn_minimize</zorder>
    <zorder>lv_members</zorder>
    <zorder>le_search</zorder>
-   <zorder>label</zorder>
    <zorder>btn_trade</zorder>
    <zorder>lbl_name</zorder>
    <zorder>lbl_birthday</zorder>
@@ -493,6 +486,7 @@ font: 15pt &quot;Calibri&quot;;</string>
    <zorder>btn_edit</zorder>
    <zorder>label_2</zorder>
    <zorder>de_birthday</zorder>
+   <zorder>chart_view</zorder>
   </widget>
   <widget class="QFrame" name="frame_blur">
    <property name="geometry">
@@ -580,6 +574,14 @@ font: 13px;</string>
   <zorder>lbl_state_div</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header>qchartview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

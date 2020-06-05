@@ -39,7 +39,7 @@ Edit_user_form::Edit_user_form(QWidget* p, User* u, int o, verb m)
 
 	//添加登录按钮
 	GradientsBtn* btn_submit = new GradientsBtn(this, method == verb::put ? "编辑" : "创建");
-	btn_submit->setGeometry(20, 315, 316, 36);
+	btn_submit->setGeometry(25 , 315, 316, 36);
 	btn_submit->raise();
 	connect(btn_submit, &GradientsBtn::clicked, this, &Edit_user_form::btn_submit_click);
 

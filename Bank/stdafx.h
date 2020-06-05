@@ -28,6 +28,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsOpacityEffect>
 #include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QIcon>
 #include <QKeyEvent>
 #include <QLabel>
@@ -46,6 +47,10 @@
 #include <QTimer>
 #include <QIntValidator>
 #include <QDoubleValidator>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 

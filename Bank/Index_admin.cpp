@@ -87,7 +87,6 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 
 	//设定用户名只读
 	ui.le_account->setReadOnly(true);
-	ui.le_username->setReadOnly(true);
 
 	//初始化权限列表
 	perms[0] = ui.cb_1;
