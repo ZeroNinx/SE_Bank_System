@@ -24,8 +24,8 @@ private:
 	QPoint mouseStartPoint;
 	QPoint windowTopLeftPoint;
 
-	QCheckBox* perms[8];
-	std::string perm_list[8] =
+	QCheckBox* perms[9];
+	std::string perm_list[9] =
 	{
 		"cl_ge",
 		"cl_up",
@@ -34,6 +34,7 @@ private:
 		"ac_ad",
 		"ac_ge",
 		"ac_fre",
+		"ac_unf",
 		"ac_del"
 	};
 

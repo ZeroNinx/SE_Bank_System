@@ -7,7 +7,7 @@ using namespace std;
 using namespace boost::property_tree;
 using namespace boost::beast::http;
 
-//构造函数s
+//构造函数
 Index_account::Index_account(QWidget* p,User u,int opt) :parent(p), user(u)
 {
 	ui.setupUi(this);
@@ -260,7 +260,6 @@ void Index_account::init_graphics()
 	}
 }
 
-
 //添加账户
 void Index_account::btn_add_account_click()
 {
@@ -308,33 +307,41 @@ void Index_account::btn_add_account_click()
 	}
 }
 
-//冻结账户（未完成）
+//冻结账户
 void Index_account::btn_freeze_account_click()
 {
 	if (current_account_index >= 0 && current_account_index < accounts.size())
 	{
 		try
 		{
-			HttpConn* remove = new HttpConn(host, port);
-			remove->build(verb::delete_, "/account/"+accounts[current_account_index].id, 11);
+			HttpConn* freezeCA = new HttpConn(host, port);
+
+			ptree root;
+			stringstream ss;
+			root.put("id", accounts[current_account_index].id);
+			write_json(ss, root);
 
 			//设定参数
-			remove->request.set(field::cookie, cookie);
+			freezeCA->build(verb::put, "/freezeById", 11);
+			freezeCA->request.set(field::cookie, cookie);
+			freezeCA->request.set(field::content_type, "application/json");
+			freezeCA->request.set(field::content_length, ss.str().length());
+			freezeCA->request.body() = ss.str();
 
 			//连接
-			remove->connect();
+			freezeCA->connect();
 
 			//解析JSON
 			stringstream resp_ss;
-			resp_ss << remove->response.body();
+			resp_ss << freezeCA->response.body();
 			//see(qs8(resp_ss.str()));
 
 			ptree resp;
 			read_json(resp_ss, resp);
 			int code = resp.get<int>("code");
-			if (code == 3301)
+			if (code == 3101)
 			{
-				see(qs("删除成功！"));
+				see(qs("冻结成功！"));
 				init_user_list();
 			}
 			else
@@ -350,10 +357,54 @@ void Index_account::btn_freeze_account_click()
 	}
 }
 
-//解冻账户（未完成）
+//解冻账户
 void Index_account::btn_unfreeze_account_click()
 {
+	if (current_account_index >= 0 && current_account_index < accounts.size())
+	{
+		try
+		{
+			HttpConn* freezeCA = new HttpConn(host, port);
 
+			ptree root;
+			stringstream ss;
+			root.put("id", accounts[current_account_index].id);
+			write_json(ss, root);
+
+			//设定参数
+			freezeCA->build(verb::put, "/unfreezeById", 11);
+			freezeCA->request.set(field::cookie, cookie);
+			freezeCA->request.set(field::content_type, "application/json");
+			freezeCA->request.set(field::content_length, ss.str().length());
+			freezeCA->request.body() = ss.str();
+
+			//连接
+			freezeCA->connect();
+
+			//解析JSON
+			stringstream resp_ss;
+			resp_ss << freezeCA->response.body();
+			//see(qs8(resp_ss.str()));
+
+			ptree resp;
+			read_json(resp_ss, resp);
+			int code = resp.get<int>("code");
+			if (code == 3101)
+			{
+				see(qs("解冻成功！"));
+				init_user_list();
+			}
+			else
+			{
+				string msg = resp.get<string>("msg");
+				see(qs8(msg));
+			}
+		}
+		catch (const std::exception& e)
+		{
+			see(qs(e.what()));
+		}
+	}
 }
 
 //删除账户
@@ -397,7 +448,6 @@ void Index_account::btn_remove_account_click()
 		}
 	}
 }
-
 
 //最小化按钮
 void Index_account::btn_minimize_click()

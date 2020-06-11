@@ -33,7 +33,7 @@ Edit_admin_form::Edit_admin_form(QWidget *p)
 
 	//添加登录按钮
 	GradientsBtn* btn_submit = new GradientsBtn(this, "创建");
-	btn_submit->setGeometry(25, 444, 506, 36);
+	btn_submit->setGeometry(25, 390, 501, 36);
 	btn_submit->raise();
 	connect(btn_submit, &GradientsBtn::clicked, this, &Edit_admin_form::btn_submit_click);
 
@@ -66,6 +66,7 @@ Edit_admin_form::Edit_admin_form(QWidget *p)
 		ui.cb_6->setFont(font);
 		ui.cb_7->setFont(font);
 		ui.cb_8->setFont(font);
+		ui.cb_9->setFont(font);
 	}
 
 	QFile fontfile3(qs("Resources/圆体/heavy.TTF"));
@@ -86,6 +87,7 @@ Edit_admin_form::Edit_admin_form(QWidget *p)
 	perms[5] = ui.cb_6;
 	perms[6] = ui.cb_7;
 	perms[7] = ui.cb_8;
+	perms[8] = ui.cb_9;
 }
 
 //关闭按钮
@@ -124,7 +126,7 @@ void Edit_admin_form::btn_submit_click()
 		root.put("password", ui.le_password->text().toStdString());
 
 		ptree pms;
-		ffor(i, 0, 7)
+		ffor(i, 0, 8)
 		{
 			if (perms[i]->isChecked())
 			{

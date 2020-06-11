@@ -232,16 +232,104 @@ void Index::btn_account_list_click()
 	}
 }
 
-//冻结客户（未完成）
+//冻结客户
 void Index::btn_freeze_user_click()
 {
+	if (current_user_index >= 0 && current_user_index < users.size())
+	{
+		try
+		{
+			HttpConn* freezeCA = new HttpConn(host, port);
 
+			ptree root;
+			stringstream ss;
+			root.put("clientAccount", users[current_user_index].username);
+			write_json(ss,root);
+
+			//设定参数
+			freezeCA->build(verb::put, "/freezeByCA", 11);
+			freezeCA->request.set(field::cookie, cookie);
+			freezeCA->request.set(field::content_type, "application/json");
+			freezeCA->request.set(field::content_length, ss.str().length());
+			freezeCA->request.body() = ss.str();
+
+			//连接
+			freezeCA->connect();
+
+			//解析JSON
+			stringstream resp_ss;
+			resp_ss << freezeCA->response.body();
+			//see(qs8(resp_ss.str()));
+
+			ptree resp;
+			read_json(resp_ss, resp);
+			int code = resp.get<int>("code");
+			if (code == 3101)
+			{
+				see(qs("冻结成功！"));
+				init_user_list();
+			}
+			else
+			{
+				string msg = resp.get<string>("msg");
+				see(qs8(msg));
+			}
+		}
+		catch (const std::exception& e)
+		{
+			see(qs(e.what()));
+		}
+	}
 }
 
 //解冻客户（未完成）
 void Index::btn_unfreeze_user_click()
 {
+	if (current_user_index >= 0 && current_user_index < users.size())
+	{
+		try
+		{
+			HttpConn* freezeCA = new HttpConn(host, port);
 
+			ptree root;
+			stringstream ss;
+			root.put("clientAccount", users[current_user_index].username);
+			write_json(ss, root);
+
+			//设定参数
+			freezeCA->build(verb::put, "/unfreezeByCA", 11);
+			freezeCA->request.set(field::cookie, cookie);
+			freezeCA->request.set(field::content_type, "application/json");
+			freezeCA->request.set(field::content_length, ss.str().length());
+			freezeCA->request.body() = ss.str();
+
+			//连接
+			freezeCA->connect();
+
+			//解析JSON
+			stringstream resp_ss;
+			resp_ss << freezeCA->response.body();
+			//see(qs8(resp_ss.str()));
+
+			ptree resp;
+			read_json(resp_ss, resp);
+			int code = resp.get<int>("code");
+			if (code == 3101)
+			{
+				see(qs("解冻成功！"));
+				init_user_list();
+			}
+			else
+			{
+				string msg = resp.get<string>("msg");
+				see(qs8(msg));
+			}
+		}
+		catch (const std::exception& e)
+		{
+			see(qs(e.what()));
+		}
+	}
 }
 
 //最小化按钮

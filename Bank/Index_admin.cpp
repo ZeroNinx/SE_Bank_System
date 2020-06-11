@@ -73,6 +73,7 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 		ui.cb_6->setFont(font);
 		ui.cb_7->setFont(font);
 		ui.cb_8->setFont(font);
+		ui.cb_9->setFont(font);
 		ui.btn_add_admin->setFont(font);
 		ui.btn_edit_admin->setFont(font);
 		ui.btn_remove_admin->setFont(font);
@@ -97,6 +98,7 @@ Index_admin::Index_admin(QWidget* p, string a) :parent(p), account(a)
 	perms[5] = ui.cb_6;
 	perms[6] = ui.cb_7;
 	perms[7] = ui.cb_8;
+	perms[8] = ui.cb_9;
 
 
 	//初始化管理员列表
@@ -188,7 +190,7 @@ void Index_admin::lv_members_click(QModelIndex mi)
 	ui.le_username->setText(qs8(admins[index].username));
 
 	//获取权限
-	ffor(i, 0, 7)
+	ffor(i, 0, 8)
 		perms[i]->setChecked(admins[index].perms[i]);
 }
 
@@ -216,7 +218,7 @@ void Index_admin::btn_edit_admin_click()
 		root.put("account", ui.le_account->text().toStdString());
 
 		ptree pms;
-		ffor(i, 0, 7)
+		ffor(i, 0, 8)
 		{
 			if (perms[i]->isChecked())
 			{

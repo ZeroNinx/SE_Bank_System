@@ -136,9 +136,9 @@ QLineEdit:hover
    <widget class="QLineEdit" name="le_money">
     <property name="geometry">
      <rect>
-      <x>135</x>
-      <y>130</y>
-      <width>226</width>
+      <x>150</x>
+      <y>125</y>
+      <width>211</width>
       <height>26</height>
      </rect>
     </property>
@@ -175,6 +175,22 @@ QLineEdit:hover
     </property>
     <property name="text">
      <string>交易金额：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>115</x>
+      <y>115</y>
+      <width>31</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:30px</string>
+    </property>
+    <property name="text">
+     <string>￥</string>
     </property>
    </widget>
   </widget>
