@@ -152,10 +152,6 @@ void Index_user::lv_members_click(QModelIndex mi)
 	char money[50];
 	sprintf(money, "%.2f", acc.money);
 
-	//²âÊÔ
-	ui.le_name->setText(qs(acc.id));
-	//²âÊÔ
-
 	ui.lbl_money_value->setText(qs8(money));
 	if (acc.freeze)
 	{

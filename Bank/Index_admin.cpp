@@ -216,7 +216,7 @@ void Index_admin::btn_edit_admin_click()
 		stringstream ss;
 
 		root.put("account", ui.le_account->text().toStdString());
-
+		root.put("username", ui.le_username->text().toStdString());
 		ptree pms;
 		ffor(i, 0, 8)
 		{

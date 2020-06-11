@@ -268,6 +268,7 @@ void Index::btn_freeze_user_click()
 			{
 				see(qs("¶³½á³É¹¦£¡"));
 				init_user_list();
+				lv_members_click(ui.lv_members->indexAt(QPoint(0, 0)));
 			}
 			else
 			{
